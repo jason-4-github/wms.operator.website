@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^2.8.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
@@ -12,6 +13,8 @@
     "babel-eslint": "7.1.1",
     "babel-jest": "18.0.0",
     "babel-loader": "6.2.10",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
     "babel-preset-react-app": "^2.2.0",
     "babel-runtime": "^6.20.0",
     "case-sensitive-paths-webpack-plugin": "1.1.4",
@@ -21,7 +24,8 @@
     "css-loader": "0.26.1",
     "detect-port": "1.1.0",
     "dotenv": "2.0.0",
-    "eslint": "3.16.1",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "^14.0.0",
     "eslint-config-react-app": "^0.6.2",
     "eslint-loader": "1.6.0",
     "eslint-plugin-flowtype": "2.21.0",
@@ -77,10 +81,63 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "es2015",
+      "react"
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
-  }
-}
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "plugins": [
+      "react",
+      "jsx-a11y",
+      "import"
+    ],
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "rules": {
+      "react/require-default-props": [
+        0
+      ],
+      "react/no-array-index-key": [
+        0
+      ],
+      "react/jsx-tag-spacing": [
+        0
+      ],
+      "import/no-named-default": [
+        0
+      ],
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      "react/forbid-prop-types": [
+        1,
+        {
+          "forbid": [
+            "any"
+          ]
+        }
+      ],
+      "import/extensions": [
+        2,
+        "never"
+      ],
+      "linebreak-style": [
+        0
+      ],
+      "arrow-body-style": [
+        "error",
+        "always"
+      ]
+    }
+   }
+ }
