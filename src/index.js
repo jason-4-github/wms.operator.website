@@ -5,9 +5,10 @@ import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import 'antd/dist/antd.less';
+import './styles/index.less';
 
 import configureStore from './store/configureStore';
-import App from './App';
+import ReceiveContainer from './containers/ReceiveContainer';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -15,7 +16,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 const routerSet = () => {
   return (
     <Router history={history}>
-      <Route path="/" component={App} />
+      <Route path="/" component={ReceiveContainer} />
     </Router>
   );
 };
