@@ -11,6 +11,10 @@ import {
   Button,
   Input,
   Layout,
+  Modal,
+  Form,
+  Icon,
+  message,
 } from 'antd';
 
 const TabPane = Tabs.TabPane;
@@ -18,6 +22,7 @@ const Search = Input.Search;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const { Header, Content } = Layout;
+const FormItem = Form.Item;
 
 const columns = [{
   title: 'Name',
@@ -156,7 +161,7 @@ class ReceiveContainer extends React.Component {
   static showRadioGroup(options) {
     const optionArrs = [];
     _.map(options, (d) => {
-      optionArrs.push(<RadioButton value={d} >{d}</RadioButton>);
+      optionArrs.push(<RadioButton value={d} key={d}>{d}</RadioButton>);
     });
     return (
       <RadioGroup defaultValue={options[0]}>
@@ -164,11 +169,39 @@ class ReceiveContainer extends React.Component {
       </RadioGroup>
     );
   }
+  static showModal() {
+    Modal.info({
+      title: '',
+      content: (
+        <div>
+          <b><h3>Please Enter Your Company ID</h3></b>
+          <Form layout="inline">
+            <FormItem>
+              <Input
+                prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                placeholder="Company ID"
+                style={{ paddingTop: '5px', width: '250px' }}
+              />
+            </FormItem>
+          </Form>
+        </div>
+      ),
+      onOk() {
+        message.success('Login Success!!');
+      },
+      okText: 'Login',
+      iconType: 'lock',
+      width: 500,
+    });
+  }
   constructor(props) {
     super(props);
     this.state = {
       companyId: null,
     };
+  }
+  componentWillMount() {
+    ReceiveContainer.showModal();
   }
   render() {
     return (
