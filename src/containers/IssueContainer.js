@@ -13,130 +13,15 @@ import {
   message,
 } from 'antd';
 
+import IssueReviseForm from './Issue/IssueReviseFormContainer';
+import { tableFakeDataCol, tableFakeDataVal } from './../constants/tableFakeData';
+
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const { Header, Content } = Layout;
 
-const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
-  key: 'name',
-}, {
-  title: 'Age',
-  dataIndex: 'age',
-  key: 'age',
-}, {
-  title: 'Address',
-  dataIndex: 'address',
-  key: 'address',
-}];
-
-const data = [{
-  key: '1',
-  name: 'John Brown',
-  age: 32,
-  address: 'New York No. 1 Lake Park',
-}, {
-  key: '2',
-  name: 'Jim Green',
-  age: 42,
-  address: 'London No. 1 Lake Park',
-}, {
-  key: '4',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '5',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '6',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '7',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '8',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '22',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '9',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '10',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '11',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '12',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '13',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '14',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '15',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '16',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '17',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '18',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '19',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '20',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '21',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}];
+const columns = tableFakeDataCol();
+const data = tableFakeDataVal();
 
 class IssueContainer extends React.Component {
   static showTable(text, fixHeight) {
@@ -173,33 +58,7 @@ class IssueContainer extends React.Component {
   static showModal() {
     const reviseModal = {
       title: 'Inventory Revise Form',
-      content: (
-        <Row style={{ textAlign: 'center' }}>
-          <Col span={7}>
-            <h3>Parts N.O.</h3>
-            <Input />
-          </Col>
-          <Col span={3}>
-            <h3>Vendor</h3>
-            <Input />
-          </Col>
-          <Col span={7}>
-            <h3>Lot N.O.</h3>
-            <Input disabled />
-          </Col>
-          <Col span={3}>
-            <h3>Date Code</h3>
-            <Input />
-          </Col>
-          <Col span={4}>
-            <br />
-            <Button size="large" type="primary">Refresh</Button>
-          </Col>
-          <Col span={24}>
-            { IssueContainer.showTable('', 140) }
-          </Col>
-        </Row>
-      ),
+      content: (<IssueReviseForm />),
       onOk() {
         message.success('Data Processing!!');
       },
