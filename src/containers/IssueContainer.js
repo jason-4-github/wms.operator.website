@@ -13,7 +13,8 @@ import {
   message,
 } from 'antd';
 
-import IssueReviseForm from './Issue/IssueReviseFormContainer';
+// import IssueReviseForm from './Issue/IssueReviseFormContainer';
+import IssueCheckForm from './Issue/IssueCheckFormContainer';
 import { tableFakeDataCol, tableFakeDataVal } from './../constants/tableFakeData';
 
 const RadioButton = Radio.Button;
@@ -57,14 +58,15 @@ class IssueContainer extends React.Component {
   }
   static showModal() {
     const reviseModal = {
-      title: 'Inventory Revise Form',
-      content: (<IssueReviseForm />),
+      style: { top: 60 },
+      title: 'Inventory Check Form',
+      content: (<IssueCheckForm />),
       onOk() {
         message.success('Data Processing!!');
       },
       okText: 'start',
       iconType: '',
-      width: 1000,
+      width: 1200,
     };
     Modal.info(reviseModal);
   }

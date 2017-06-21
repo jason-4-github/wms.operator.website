@@ -16,7 +16,7 @@ class IssueMenuContainer extends React.Component {
   static showModal() {
     const loginModal = {
       title: '',
-      style: { top: 280 },
+      style: { top: 200 },
       content: (
         <div>
           <b><h3>Please Enter Your Company ID</h3></b>

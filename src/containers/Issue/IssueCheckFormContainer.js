@@ -2,67 +2,19 @@ import React from 'react';
 import {
   Row,
   Col,
-  Card,
   Radio,
   Input,
   Table,
-  Layout,
   Button,
 } from 'antd';
 
-const { Header, Content, Footer } = Layout;
+import { tableFakeDataCol, tableFakeDataVal } from './../../constants/tableFakeData';
+
 const RadioGroup = Radio.Group;
-const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
-}, {
-  title: 'Age',
-  dataIndex: 'age',
-}, {
-  title: 'Address',
-  dataIndex: 'address',
-}];
-const data = [{
-  key: '1',
-  name: 'John Brown',
-  age: 32,
-  address: 'New York No. 1 Lake Park',
-}, {
-  key: '2',
-  name: 'Jim Green',
-  age: 42,
-  address: 'London No. 1 Lake Park',
-}, {
-  key: '3',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '4',
-  name: 'Disabled User',
-  age: 99,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '5',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '6',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '7',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '8',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}];
+
+const columns = tableFakeDataCol();
+const data = tableFakeDataVal();
+
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -73,127 +25,137 @@ class CheckFormContainer extends React.Component {
     super(props);
     this.state = {
       companyId: null,
-      value: 1,
-      options: 1,
+      showDataRadio: 'all',
+      useOptionRadio: 'use',
     };
-    this.onChange = this.onChange.bind(this);
-    this.onOptionsChange = this.onOptionsChange.bind(this);
+    this.onShowDatafunc = this.onShowDatafunc.bind(this);
+    this.onUseOptionsfunc = this.onUseOptionsfunc.bind(this);
   }
-  onChange(e) {
+  onShowDatafunc(e) {
     this.setState({
-      value: e.target.value,
+      showDataRadio: e.target.value,
     });
   }
-  onOptionsChange(e) {
+  onUseOptionsfunc(e) {
     this.setState({
-      options: e.target.value,
+      useOptionRadio: e.target.value,
     });
   }
   render() {
     return (
       <div id="check-container">
-        <Layout className="layout">
-          <Header className="header" />
-          <Content id="content">
+        <Row>
+          <Col span={24}>
             <Row>
-              <Col span={24}>
-                <Card>
-                  <Row>
-                    <Col span={3}>
-                      <Col span={24} className="col">
-                        <RadioGroup onChange={this.onChange} value={this.state.value}>
-                          <Radio value={1}>Show All</Radio>
-                          <Radio value={2}>Show Not Finished</Radio>
-                        </RadioGroup>
-                      </Col>
-                      <Col span={24} className="col">
-                        <Button className="button">Refresh</Button>
-                      </Col>
-                      <Col span={24} className="col">
-                        <Button className="button">Finish</Button>
-                      </Col>
-                    </Col>
-                    <Col span={21}>
-                      <Table
-                        columns={columns}
-                        dataSource={data}
-                        pagination={false}
-                        size="middle"
-                        bordered
-                      />
-                    </Col>
-                  </Row>
-                  <Row className="row">
-                    <Col span={7}>
-                      <Col span={12}>
-                        <font size="3">PARTS_NO</font><br />
-                        <Input className="input" />
-                      </Col>
-                      <Col span={12}>
-                        <font size="3">QTY</font><br />
-                        <Input className="input" />
-                      </Col>
-                    </Col>
-                    <Col span={2} className="radio-col">
-                      <RadioGroup onChange={this.onOptionsChange} value={this.state.options}>
-                        <Radio value={1}>Use</Radio><br />
-                        <Radio value={2}>Not Use</Radio><br />
-                      </RadioGroup>
-                    </Col>
-                    <Col span={12}>
-                      <Col span={6}>
-                        <font size="3">VENDOR</font><br />
-                        <Input className="input" />
-                      </Col>
-                      <Col span={6}>
-                        <font size="3">LOT_NO</font><br />
-                        <Input className="input" />
-                      </Col>
-                      <Col span={12}>
-                        <font size="3">DATA_CODE</font><br />
-                        <Input className="datacode" />
-                      </Col>
-                    </Col>
-                    <Col span={3} className="col">
-                      <Col span={24}>
-                        <Button className="button">Update</Button>
-                        <Button className="button">Insert</Button>
-                      </Col>
-                      <Col span={24}>
-                        <Button className="button">Delete</Button>
-                        <Button className="button">Finish</Button>
-                      </Col>
-                    </Col>
-                  </Row>
-                  <Row className="row">
-                    <Col span={16}>
-                      <Col span={8}>
-                        <Input addonBefore="REF_ISSUE_NO:" disabled />
-                      </Col>
-                      <Col span={8}>
-                        <Input addonBefore="REF_ISSUE_SEQ_NO:" disabled />
-                      </Col>
-                    </Col>
-                  </Row>
-                  <Row className="row">
-                    <Table
-                      rowSelection={rowSelection}
-                      columns={columns}
-                      dataSource={data}
-                      pagination={false}
-                      size="middle"
-                      bordered
-                    />
-                  </Row>
-                  <Row className="rowtop">
-                    <Button type="primary" size="large" className="button">start</Button>
-                  </Row>
-                </Card>
+              <Col span={3}>
+                <Col span={24} className="checkform-col showDataRadio">
+                  <RadioGroup
+                    onChange={this.onShowDatafunc}
+                    value={this.state.showDataRadio}
+                  >
+                    <Radio value="all">Show All</Radio>
+                    <Radio value="finish yet">Show Not Finished</Radio>
+                  </RadioGroup>
+                </Col>
+                <Col span={24} className="checkform-col">
+                  <Button className="checkform-querybutton">Refresh</Button>
+                </Col>
+                <Col span={24} className="checkform-col">
+                  <Button className="checkform-querybutton">Finish</Button>
+                </Col>
+              </Col>
+              <Col span={21}>
+                <Table
+                  columns={columns}
+                  dataSource={data}
+                  pagination={false}
+                  scroll={{ y: 133.75 }}
+                  size="small"
+                />
               </Col>
             </Row>
-          </Content>
-          <Footer className="footer" />
-        </Layout>
+            <Row className="checkform-row">
+              <Col span={6}>
+                <Col span={12} className="describeTitle">
+                  <font size="2">PARTS_NO</font><br />
+                  <Input className="checkform-input" />
+                </Col>
+                <Col span={12} className="describeTitle">
+                  <font size="2">QTY</font><br />
+                  <Input className="checkform-input" />
+                </Col>
+              </Col>
+              <Col span={3} className="checkform-options-col">
+                <RadioGroup
+                  onChange={this.onUseOptionsfunc}
+                  value={this.state.useOptionRadio}
+                >
+                  <Radio value="use">Use</Radio><br />
+                  <Radio value="not use">Not Use</Radio><br />
+                </RadioGroup>
+              </Col>
+              <Col span={11}>
+                <Col span={6} className="describeTitle">
+                  <font size="2">VENDOR</font><br />
+                  <Input className="checkform-input" />
+                </Col>
+                <Col span={6} className="describeTitle">
+                  <font size="2">LOT_NO</font><br />
+                  <Input className="checkform-input" />
+                </Col>
+                <Col span={12} className="describeTitle">
+                  <font size="2">DATA_CODE</font><br />
+                  <Input className="checkform-input" />
+                </Col>
+              </Col>
+              <Col span={4} className="checkform-col" id="buttonGroup">
+                <Col span={12}>
+                  <Button className="checkform-querybutton">Update</Button>
+                </Col>
+                <Col span={12}>
+                  <Button className="checkform-querybutton">Insert</Button>
+                </Col>
+                <Col span={12}>
+                  <Button className="checkform-querybutton">Delete</Button>
+                </Col>
+                <Col span={12}>
+                  <Button className="checkform-querybutton">Finish</Button>
+                </Col>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={24} id="checkform-readonlyarea">
+                <Col span={10}>
+                  <Col span={8} className="disableDescribeTitle">
+                    <font size="2">REF_ISSUE_NO: </font>
+                  </Col>
+                  <Col span={16}>
+                    <Input className="checkform-input" disabled />
+                  </Col>
+                </Col>
+                <Col span={10}>
+                  <Col span={8} className="disableDescribeTitle">
+                    <font size="2">REF_ISSUE_SEQ_NO: </font>
+                  </Col>
+                  <Col span={16}>
+                    <Input className="checkform-input" disabled />
+                  </Col>
+                </Col>
+                <Col span={4} />
+              </Col>
+            </Row>
+            <Row className="checkform-row">
+              <Table
+                rowSelection={rowSelection}
+                columns={columns}
+                dataSource={data}
+                pagination={false}
+                scroll={{ y: 133.75 }}
+                size="small"
+              />
+            </Row>
+          </Col>
+        </Row>
       </div>
     );
   }
