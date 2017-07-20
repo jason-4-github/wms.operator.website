@@ -122,3 +122,127 @@ export const tableFakeDataVal = () => {
     address: 'Sidney No. 1 Lake Park',
   }];
 };
+
+export const checkFormTableFakeDataCol = () => {
+  return [{
+    title: 'MO_NO',
+    dataIndex: 'mo_no',
+    key: 'mo_no',
+    width: '12%',
+  }, {
+    title: 'ISSUE_NO',
+    dataIndex: 'issus_no',
+    key: 'issus_no',
+    width: '12%',
+  }, {
+    title: 'START_TIME',
+    dataIndex: 'start_time',
+    key: 'start_time',
+    width: '12%',
+  }, {
+    title: 'WMS_OK_TIME',
+    dataIndex: 'wms_ok_time',
+    key: 'wms_ok_time',
+    width: '12%',
+  }, {
+    title: 'LINE_NO',
+    dataIndex: 'line_no',
+    key: 'line_no',
+    width: '12%',
+  }, {
+    title: 'FINISH_TIME',
+    dataIndex: 'finish_time',
+    key: 'finish_time',
+    width: '12%',
+  }, {
+    title: 'TR_CD',
+    dataIndex: 'tr_cd',
+    key: 'tr_cd',
+    width: '12%',
+  }, {
+    title: 'DEPT_CD',
+    dataIndex: 'dept_cd',
+    key: 'dept_cd',
+    width: '12%',
+  }];
+};
+
+export const checkFormTableFakeDataVal = () => {
+  return [{
+    key: '1',
+    mo_no: 606247806,
+    issus_no: '607A1425',
+    made_area: 'L1',
+    start_time: '20160708162558',
+    wms_ok_time: '2016-07-08 16:31:45',
+    line_no: 'H4',
+    finish_time: '',
+    tr_cd: '',
+  }, {
+    key: '2',
+    mo_no: 606248603,
+    issus_no: '607A0834',
+    made_area: 'L1',
+    start_time: '20160708162558',
+    wms_ok_time: '2016-07-08 16:31:45',
+    line_no: 'H4',
+    finish_time: '',
+    tr_cd: '',
+  }, {
+    key: '3',
+    mo_no: 606248603,
+    issus_no: '607A0835',
+    made_area: 'L1',
+    start_time: '20160708162558',
+    wms_ok_time: '2016-07-08 16:31:45',
+    line_no: 'H4',
+    finish_time: '',
+    tr_cd: '',
+  }];
+};
+
+export const subTableFakeDataVal = () => {
+  return [{
+    key: '0',
+    mo_no: {
+      editable: false,
+      value: 'Edward King 0',
+    },
+    issus_no: {
+      editable: false,
+      value: '32',
+    },
+    issus_seq_no: {
+      editable: false,
+      value: 'London, Park Lane no. 0',
+    },
+    parts_no: {
+      editable: false,
+      value: '32',
+    },
+    cust_parts_no: {
+      editable: false,
+      value: '32',
+    },
+    qty: {
+      editable: false,
+      value: '32',
+    },
+    issue_qty: {
+      editable: false,
+      value: '32',
+    },
+    vender: {
+      editable: false,
+      value: ' ',
+    },
+    lot_no: {
+      editable: false,
+      value: ' ',
+    },
+    date_code: {
+      editable: false,
+      value: ' ',
+    },
+  }];
+};
