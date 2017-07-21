@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-import { Table, Button, Popconfirm } from 'antd';
+import { Table, Input, Icon, Button, Popconfirm } from 'antd';
 
 import EditableCell from './EditableCell';
 
@@ -8,43 +8,73 @@ class EditableTable extends React.Component {
   constructor(props) {
     super(props);
     this.columns = [{
-      title: 'operation',
-      dataIndex: 'operation',
-      fixed: 'left',
-      width: 150,
-      render: (text, record, index) => {
-        const { editable } = this.state.data[index].mo_no;
-        return (
-          <div className="editable-row-operations">
-            {
-              editable ?
-                <span>
-                  <Button type="primary" onClick={() => { this.editDone(index, 'save'); }}>Save</Button>
-                  <Popconfirm title="Sure to cancel?" onConfirm={() => { this.editDone(index, 'cancel'); }}>
-                    <Button>Cancel</Button>
-                  </Popconfirm>
-                </span>
-                :
-                  <Button type="primary" onClick={() => { this.edit(index); }}>Edit</Button>
-            }
-          </div>
-        );
-      },
-    }, {
       title: 'QTY',
       dataIndex: 'qty',
       key: '1',
-      onCellClick: (record, e) => {
-        if (e.nativeEvent.isTrusted) {
-          console.log(e.view.alert('test'));
-        } else {
-          console.log(e.view.alert('test'));
-        }
+      render: (text) => {
+        const { editable } = this.state;
+        return (
+          <div className="editable-cell">
+            {
+              editable ?
+                <div className="editable-cell-input-wrapper">
+                  <Input
+                    value={text}
+                    onPressEnter={this.check}
+                  />
+                  <Icon
+                    type="check"
+                    className="editable-cell-icon-check"
+                    onClick={this.check}
+                  />
+                </div>
+                :
+                  <div className="editable-cell-text-wrapper">
+                    {text || ' '}
+                  </div>
+              }
+          </div>
+        );
+      },
+      onCellClick: () => {
+        this.setState({
+          editable: true,
+        });
       },
     }, {
       title: 'ISSUE_QTY',
       dataIndex: 'issue_qty',
       key: '2',
+      render: (text) => {
+        const { editable } = this.state;
+        return (
+          <div className="editable-cell">
+            {
+              editable ?
+                <div className="editable-cell-input-wrapper">
+                  <Input
+                    value={text}
+                    onPressEnter={this.check}
+                  />
+                  <Icon
+                    type="check"
+                    className="editable-cell-icon-check"
+                    onClick={this.check}
+                  />
+                </div>
+                :
+                  <div className="editable-cell-text-wrapper">
+                    {text || ' '}
+                  </div>
+              }
+          </div>
+        );
+      },
+      onCellClick: () => {
+        this.setState({
+          editable: true,
+        });
+      },
     }, {
       title: 'MO_NO',
       dataIndex: 'mo_no',
@@ -69,14 +99,104 @@ class EditableTable extends React.Component {
       title: 'VENDER',
       dataIndex: 'vender',
       key: '8',
+      render: (text) => {
+        const { editable } = this.state;
+        return (
+          <div className="editable-cell">
+            {
+              editable ?
+                <div className="editable-cell-input-wrapper">
+                  <Input
+                    value={text}
+                    onPressEnter={this.check}
+                  />
+                  <Icon
+                    type="check"
+                    className="editable-cell-icon-check"
+                    onClick={this.check}
+                  />
+                </div>
+                :
+                  <div className="editable-cell-text-wrapper">
+                    {text || ' '}
+                  </div>
+              }
+          </div>
+        );
+      },
+      onCellClick: () => {
+        this.setState({
+          editable: true,
+        });
+      },
     }, {
       title: 'LOT_NO',
       dataIndex: 'lot_no',
       key: '9',
+      render: (text) => {
+        const { editable } = this.state;
+        return (
+          <div className="editable-cell">
+            {
+              editable ?
+                <div className="editable-cell-input-wrapper">
+                  <Input
+                    value={text}
+                    onPressEnter={this.check}
+                  />
+                  <Icon
+                    type="check"
+                    className="editable-cell-icon-check"
+                    onClick={this.check}
+                  />
+                </div>
+                :
+                  <div className="editable-cell-text-wrapper">
+                    {text || ' '}
+                  </div>
+              }
+          </div>
+        );
+      },
+      onCellClick: () => {
+        this.setState({
+          editable: true,
+        });
+      },
     }, {
       title: 'DATE_CODE',
       dataIndex: 'date_code',
       key: '10',
+      render: (text) => {
+        const { editable } = this.state;
+        return (
+          <div className="editable-cell">
+            {
+              editable ?
+                <div className="editable-cell-input-wrapper">
+                  <Input
+                    value={text}
+                    onPressEnter={this.check}
+                  />
+                  <Icon
+                    type="check"
+                    className="editable-cell-icon-check"
+                    onClick={this.check}
+                  />
+                </div>
+                :
+                  <div className="editable-cell-text-wrapper">
+                    {text || ' '}
+                  </div>
+              }
+          </div>
+        );
+      },
+      onCellClick: () => {
+        this.setState({
+          editable: true,
+        });
+      },
     }, {
       title: 'NOT_VENDOR',
       dataIndex: 'not_vendor',
@@ -130,9 +250,15 @@ class EditableTable extends React.Component {
       this.setState({ data });
     });
   }
-  handleChange(key, index, value) {
+  check() {
+    this.setState({
+      editable: false,
+    });
+  }
+  handleChange(key, index, text) {
+    console.log(text);
     const { data } = this.state;
-    data[index][key].value = value;
+    data[index][key] = text;
     this.setState({ data });
   }
   handleAdd() {
