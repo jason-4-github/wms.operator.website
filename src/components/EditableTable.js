@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-import { Table, Input, Icon, Button, Popconfirm } from 'antd';
+import { Table, Select, Button, Popconfirm } from 'antd';
 
 import EditableCell from './EditableCell';
 
@@ -11,70 +11,12 @@ class EditableTable extends React.Component {
       title: 'QTY',
       dataIndex: 'qty',
       key: '1',
-      render: (text) => {
-        const { editable } = this.state;
-        return (
-          <div className="editable-cell">
-            {
-              editable ?
-                <div className="editable-cell-input-wrapper">
-                  <Input
-                    value={text}
-                    onPressEnter={this.check}
-                  />
-                  <Icon
-                    type="check"
-                    className="editable-cell-icon-check"
-                    onClick={this.check}
-                  />
-                </div>
-                :
-                  <div className="editable-cell-text-wrapper">
-                    {text || ' '}
-                  </div>
-              }
-          </div>
-        );
-      },
-      onCellClick: () => {
-        this.setState({
-          editable: true,
-        });
-      },
+      render: (text, record, index) => { return (this.renderColumns(this.state.data, index, 'qty', text)); },
     }, {
       title: 'ISSUE_QTY',
       dataIndex: 'issue_qty',
       key: '2',
-      render: (text) => {
-        const { editable } = this.state;
-        return (
-          <div className="editable-cell">
-            {
-              editable ?
-                <div className="editable-cell-input-wrapper">
-                  <Input
-                    value={text}
-                    onPressEnter={this.check}
-                  />
-                  <Icon
-                    type="check"
-                    className="editable-cell-icon-check"
-                    onClick={this.check}
-                  />
-                </div>
-                :
-                  <div className="editable-cell-text-wrapper">
-                    {text || ' '}
-                  </div>
-              }
-          </div>
-        );
-      },
-      onCellClick: () => {
-        this.setState({
-          editable: true,
-        });
-      },
+      render: (text, record, index) => { return (this.renderColumns(this.state.data, index, 'issue_qty', text)); },
     }, {
       title: 'MO_NO',
       dataIndex: 'mo_no',
@@ -99,104 +41,14 @@ class EditableTable extends React.Component {
       title: 'VENDER',
       dataIndex: 'vender',
       key: '8',
-      render: (text) => {
-        const { editable } = this.state;
-        return (
-          <div className="editable-cell">
-            {
-              editable ?
-                <div className="editable-cell-input-wrapper">
-                  <Input
-                    value={text}
-                    onPressEnter={this.check}
-                  />
-                  <Icon
-                    type="check"
-                    className="editable-cell-icon-check"
-                    onClick={this.check}
-                  />
-                </div>
-                :
-                  <div className="editable-cell-text-wrapper">
-                    {text || ' '}
-                  </div>
-              }
-          </div>
-        );
-      },
-      onCellClick: () => {
-        this.setState({
-          editable: true,
-        });
-      },
     }, {
       title: 'LOT_NO',
       dataIndex: 'lot_no',
       key: '9',
-      render: (text) => {
-        const { editable } = this.state;
-        return (
-          <div className="editable-cell">
-            {
-              editable ?
-                <div className="editable-cell-input-wrapper">
-                  <Input
-                    value={text}
-                    onPressEnter={this.check}
-                  />
-                  <Icon
-                    type="check"
-                    className="editable-cell-icon-check"
-                    onClick={this.check}
-                  />
-                </div>
-                :
-                  <div className="editable-cell-text-wrapper">
-                    {text || ' '}
-                  </div>
-              }
-          </div>
-        );
-      },
-      onCellClick: () => {
-        this.setState({
-          editable: true,
-        });
-      },
     }, {
       title: 'DATE_CODE',
       dataIndex: 'date_code',
       key: '10',
-      render: (text) => {
-        const { editable } = this.state;
-        return (
-          <div className="editable-cell">
-            {
-              editable ?
-                <div className="editable-cell-input-wrapper">
-                  <Input
-                    value={text}
-                    onPressEnter={this.check}
-                  />
-                  <Icon
-                    type="check"
-                    className="editable-cell-icon-check"
-                    onClick={this.check}
-                  />
-                </div>
-                :
-                  <div className="editable-cell-text-wrapper">
-                    {text || ' '}
-                  </div>
-              }
-          </div>
-        );
-      },
-      onCellClick: () => {
-        this.setState({
-          editable: true,
-        });
-      },
     }, {
       title: 'NOT_VENDOR',
       dataIndex: 'not_vendor',
@@ -250,16 +102,23 @@ class EditableTable extends React.Component {
       this.setState({ data });
     });
   }
-  check() {
-    this.setState({
-      editable: false,
-    });
-  }
-  handleChange(key, index, text) {
-    console.log(text);
+  handleChange(key, index, value) {
     const { data } = this.state;
-    data[index][key] = text;
+    data[index][key].value = value;
     this.setState({ data });
+  }
+  handleSearch(value) {
+    const filteredIndexes = [];
+    const { data } = this.state;
+    const size = data.length;
+    for (let index = 0; index < size; index += 1) {
+      if (_.isMatch(data[index].mo_no.toString(), value)) {
+        filteredIndexes.push(data[index]);
+      }
+    }
+    this.setState({
+      data: value ? filteredIndexes : data,
+    });
   }
   handleAdd() {
     const { data } = this.state;
@@ -291,7 +150,7 @@ class EditableTable extends React.Component {
         width: 100,
       },
       qty: {
-        editable: true,
+        editable: false,
         value: ' ',
         width: 100,
       },
@@ -320,41 +179,14 @@ class EditableTable extends React.Component {
       data: [...data, newData],
     });
   }
-  edit(index) {
-    const { data } = this.state;
-    Object.keys(data[index]).forEach((item) => {
-      if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-        data[index][item].editable = true;
-      }
-    });
-    this.setState({ data });
-  }
-  editDone(index, type) {
-    const { data } = this.state;
-    Object.keys(data[index]).forEach((item) => {
-      if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-        data[index][item].editable = false;
-        data[index][item].status = type;
-      }
-    });
-    this.setState({ data }, () => {
-      Object.keys(data[index]).forEach((item) => {
-        if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-          delete data[index][item].status;
-        }
-      });
-    });
-  }
   renderColumns(data, index, key, text) {
-    const { editable, status } = data[index][key];
+    const { editable } = data[index][key];
     if (typeof editable === 'undefined') {
       return text;
     }
     return (<EditableCell
-      editable={editable}
       value={text}
       onChange={(value) => { this.handleChange(key, index, value); }}
-      status={status}
     />);
   }
   render() {
@@ -381,6 +213,20 @@ class EditableTable extends React.Component {
         <Popconfirm title="Sure to delete?" onConfirm={() => { this.onDelete(delDataKey); }}>
           <Button type="primary" href="#">Delete DaiYong</Button>
         </Popconfirm>
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Select a mo_no"
+          optionFilterProp="children"
+          onChange={this.handleSearch}
+          filterOption={(input, option) => {
+            return (option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0);
+          }}
+        >
+          <Option value="606247806">Jack</Option>
+          <Option value="606248603">Lucy</Option>
+          <Option value="606248603">Tom</Option>
+        </Select>
         <Table
           bordered
           dataSource={dataSource}

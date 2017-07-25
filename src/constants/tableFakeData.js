@@ -190,7 +190,7 @@ export const checkFormTableFakeDataVal = () => {
     tr_cd: '',
   }, {
     key: '3',
-    mo_no: 606248603,
+    mo_no: 606248604,
     issus_no: '607A0835',
     made_area: 'L1',
     start_time: '20160708162558',
@@ -205,43 +205,33 @@ export const subTableFakeDataVal = () => {
   return [{
     key: '0',
     mo_no: {
-      editable: false,
       value: 'Edward King 0',
     },
     issus_no: {
-      editable: false,
       value: '32',
     },
     issus_seq_no: {
-      editable: false,
       value: 'London, Park Lane no. 0',
     },
     parts_no: {
-      editable: false,
       value: '32',
     },
     cust_parts_no: {
-      editable: false,
       value: '32',
     },
     qty: {
-      editable: false,
       value: '32',
     },
     issue_qty: {
-      editable: false,
       value: '32',
     },
     vender: {
-      editable: false,
       value: ' ',
     },
     lot_no: {
-      editable: false,
       value: ' ',
     },
     date_code: {
-      editable: false,
       value: ' ',
     },
   }];
