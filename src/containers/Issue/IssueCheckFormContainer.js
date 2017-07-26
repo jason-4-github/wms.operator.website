@@ -8,15 +8,16 @@ import {
   Button,
   Select,
 } from 'antd';
+import { browserHistory } from 'react-router';
 
-import { checkFormTableFakeDataCol, checkFormTableFakeDataVal, subTableFakeDataVal } from './../../constants/tableFakeData';
+import { issueCheckMainTableCol, issueCheckMainTableVal, subTableFakeDataVal } from './../../constants/issueTestData';
 import EditableTable from './../../components/EditableTable';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
-const columns = checkFormTableFakeDataCol();
-const data = checkFormTableFakeDataVal();
+const columns = issueCheckMainTableCol();
+const data = issueCheckMainTableVal();
 const subData = subTableFakeDataVal();
 const fixHeight = window.innerHeight * 0.7;
 
@@ -74,29 +75,35 @@ class CheckFormContainer extends React.Component {
                   <RadioButton value="all">Show All</RadioButton>
                   <RadioButton value="finish yet">Show Not Finished</RadioButton>
                 </RadioGroup>
+                <Select
+                  showSearch
+                  style={{ width: 200 }}
+                  placeholder="Select a mo_no"
+                  optionFilterProp="children"
+                  onChange={this.handleSearch}
+                >
+                  <Option value="606247806">606247806</Option>
+                  <Option value="606248603">606248603</Option>
+                  <Option value="606248604">606248604</Option>
+                </Select>
               </Col>
               <Col span={8} />
-              <Select
-                showSearch
-                style={{ width: 200 }}
-                placeholder="Select a mo_no"
-                optionFilterProp="children"
-                onChange={this.handleSearch}
-                filterOption={(input, option) => {
-                  return (option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0);
-                }}
-              >
-                <Option value="606247806">606247806</Option>
-                <Option value="606248603">606248603</Option>
-                <Option value="606248604">606248604</Option>
-              </Select>
               <Col span={8} />
             </Row>
             <Row>
               { CheckFormContainer.showTable(mainData) }
             </Row>
             <Row id="finishRow">
-              <Button id="finishButton" size="large" type="primary">Finish</Button>
+              <Button
+                id="finishButton"
+                size="large"
+                type="primary"
+                onClick={() => {
+                  return (browserHistory.replace('issue'));
+                }}
+              >
+                Start
+              </Button>
             </Row>
           </Col>
         </Row>

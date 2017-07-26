@@ -12,6 +12,7 @@ import ReceiveContainer from './containers/ReceiveContainer';
 import IssueContainer from './containers/IssueContainer';
 import IssueMenuContainer from './containers/Issue/IssueMenuContainer';
 import IssueCheckFormContainer from './containers/Issue/IssueCheckFormContainer';
+import IssueReviseFormContainer from './containers/Issue/IssueReviseFormContainer';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -22,7 +23,8 @@ const routerSet = () => {
       <Route path="/" component={ReceiveContainer} />
       <Route path="/issue" component={IssueContainer} />
       <Route path="/issueMenu" component={IssueMenuContainer} />
-      <Route path="/issueCheckForm" component={IssueCheckFormContainer} />
+      <Route path="/issueCheck" component={IssueCheckFormContainer} />
+      <Route path="/issueRevise" component={IssueReviseFormContainer} />
     </Router>
   );
 };

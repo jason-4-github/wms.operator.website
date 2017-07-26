@@ -3,10 +3,10 @@ import {
   Row,
   Col,
   Form,
-  message,
+  Icon,
   Input,
   Modal,
-  Icon,
+  message,
 } from 'antd';
 import { browserHistory } from 'react-router';
 
@@ -40,9 +40,6 @@ class IssueMenuContainer extends React.Component {
     };
     Modal.info(loginModal);
   }
-  static iconOnClick() {
-    browserHistory.replace('issue');
-  }
   constructor(props) {
     super(props);
     this.state = {
@@ -63,7 +60,9 @@ class IssueMenuContainer extends React.Component {
               <Icon
                 type="check-square-o"
                 className="issueMenuIcon"
-                onClick={IssueMenuContainer.iconOnClick}
+                onClick={() => {
+                  return (browserHistory.replace('issueCheck'));
+                }}
               />
               <br />
               <h2>Check Form</h2>
@@ -75,7 +74,9 @@ class IssueMenuContainer extends React.Component {
               <Icon
                 type="edit"
                 className="issueMenuIcon"
-                onClick={IssueMenuContainer.iconOnClick}
+                onClick={() => {
+                  return (browserHistory.replace('issueRevise'));
+                }}
               />
               <br />
               <h2>Revise Form</h2>

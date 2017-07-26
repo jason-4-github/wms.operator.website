@@ -6,6 +6,7 @@ import {
   Button,
   Input,
 } from 'antd';
+import { browserHistory } from 'react-router';
 
 import { tableFakeDataCol, tableFakeDataVal } from './../../constants/tableFakeData';
 
@@ -64,6 +65,18 @@ class IssueReviseFormContainer extends React.Component {
         </Col>
         <Col span={24}>
           { IssueReviseFormContainer.showTable('', 140) }
+        </Col>
+        <Col span={24}>
+          <Button
+            id="finishButton"
+            size="large"
+            type="primary"
+            onClick={() => {
+              return (browserHistory.replace('issue'));
+            }}
+          >
+            Start
+          </Button>
         </Col>
       </Row>
     );

@@ -180,10 +180,6 @@ class EditableTable extends React.Component {
     });
   }
   renderColumns(data, index, key, text) {
-    const { editable } = data[index][key];
-    if (typeof editable === 'undefined') {
-      return text;
-    }
     return (<EditableCell
       value={text}
       onChange={(value) => { this.handleChange(key, index, value); }}
@@ -223,9 +219,9 @@ class EditableTable extends React.Component {
             return (option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0);
           }}
         >
-          <Option value="606247806">Jack</Option>
-          <Option value="606248603">Lucy</Option>
-          <Option value="606248603">Tom</Option>
+          <Option value="606247806">606247806</Option>
+          <Option value="606248603">606248603</Option>
+          <Option value="606248604">606248604</Option>
         </Select>
         <Table
           bordered
