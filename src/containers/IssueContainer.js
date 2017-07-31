@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 import {
   Row,
@@ -12,6 +13,7 @@ import {
 } from 'antd';
 
 import { tableFakeDataCol, tableFakeDataVal } from './../constants/tableFakeData';
+import { doListIssue } from '../actions';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -58,7 +60,15 @@ class IssueContainer extends React.Component {
       companyId: null,
     };
   }
+  componentDidMount() {
+    const { doListIssue } = this.props;
+    doListIssue();
+  }
   render() {
+    const {
+      listIssueData,
+      } = this.props;
+    console.log(listIssueData);
     return (
       <div id="issue-container">
         <Layout className="layout">
@@ -128,5 +138,18 @@ class IssueContainer extends React.Component {
     );
   }
 }
-
-export default IssueContainer;
+const mapStateToProps = (state) => {
+  return {
+    ...state.admin,
+  };
+};
+IssueContainer.propTypes = {
+  doListIssue: PropTypes.func,
+  listIssueData: PropTypes.array,
+};
+export default connect(
+  mapStateToProps,
+  {
+    doListIssue,
+  },
+)(IssueContainer);

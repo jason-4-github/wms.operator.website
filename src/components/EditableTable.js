@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
-import { Table, Select, Button, Popconfirm } from 'antd';
+import { Table, Button, Popconfirm } from 'antd';
 
 import EditableCell from './EditableCell';
 
@@ -107,70 +107,47 @@ class EditableTable extends React.Component {
     data[index][key].value = value;
     this.setState({ data });
   }
-  handleSearch(value) {
-    const filteredIndexes = [];
-    const { data } = this.state;
-    const size = data.length;
-    for (let index = 0; index < size; index += 1) {
-      if (_.isMatch(data[index].mo_no.toString(), value)) {
-        filteredIndexes.push(data[index]);
-      }
-    }
-    this.setState({
-      data: value ? filteredIndexes : data,
-    });
-  }
   handleAdd() {
     const { data } = this.state;
     const newData = {
       key: data.length,
       mo_no: {
-        editable: true,
         value: ' ',
         width: 100,
       },
       issus_no: {
-        editable: true,
         value: ' ',
         width: 100,
       },
       issus_seq_no: {
-        editable: true,
         value: ' ',
         width: 100,
       },
       parts_no: {
-        editable: true,
         value: ' ',
         width: 100,
       },
       cust_parts_no: {
-        editable: true,
         value: ' ',
         width: 100,
       },
       qty: {
-        editable: false,
         value: ' ',
         width: 100,
       },
       issue_qty: {
-        editable: true,
         value: ' ',
         width: 100,
       },
       vender: {
-        editable: true,
         value: ' ',
         width: 100,
       },
       lot_no: {
-        editable: true,
         value: ' ',
         width: 100,
       },
       date_code: {
-        editable: true,
         value: ' ',
         width: 100,
       },
@@ -192,6 +169,7 @@ class EditableTable extends React.Component {
       Object.keys(item).forEach((key) => {
         obj[key] = key === 'key' ? item[key] : item[key].value;
       });
+      console.log(obj);
       return obj;
     });
     const rowSelection = {
@@ -209,20 +187,6 @@ class EditableTable extends React.Component {
         <Popconfirm title="Sure to delete?" onConfirm={() => { this.onDelete(delDataKey); }}>
           <Button type="primary" href="#">Delete DaiYong</Button>
         </Popconfirm>
-        <Select
-          showSearch
-          style={{ width: 200 }}
-          placeholder="Select a mo_no"
-          optionFilterProp="children"
-          onChange={this.handleSearch}
-          filterOption={(input, option) => {
-            return (option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0);
-          }}
-        >
-          <Option value="606247806">606247806</Option>
-          <Option value="606248603">606248603</Option>
-          <Option value="606248604">606248604</Option>
-        </Select>
         <Table
           bordered
           dataSource={dataSource}

@@ -54,14 +54,14 @@ class EditableCell extends React.Component {
               />
             </div>
             :
-              <div className={modifiedStyle}>
-                {value.toString() || ' '}
-                <Icon
-                  type="edit"
-                  className="editable-cell-icon"
-                  onClick={this.edit}
-                />
-              </div>
+            <div className={modifiedStyle}>
+              {value.toString() || ' '}
+              <Icon
+                type="edit"
+                className="editable-cell-icon"
+                onClick={this.edit}
+              />
+            </div>
         }
       </div>
     );

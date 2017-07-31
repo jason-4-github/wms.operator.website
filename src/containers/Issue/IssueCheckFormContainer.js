@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import {
   Row,
@@ -6,7 +5,6 @@ import {
   Radio,
   Table,
   Button,
-  Select,
 } from 'antd';
 import { browserHistory } from 'react-router';
 
@@ -50,19 +48,6 @@ class CheckFormContainer extends React.Component {
       mainData: data,
     };
   }
-  handleSearch(value) {
-    const filteredIndexes = [];
-    const { mainData } = this.state;
-    const size = mainData.length;
-    for (let index = 0; index < size; index += 1) {
-      if (_.isMatch(mainData[index].mo_no.toString(), value)) {
-        filteredIndexes.push(mainData[index]);
-      }
-    }
-    this.setState({
-      mainData: value ? filteredIndexes : mainData,
-    });
-  }
   render() {
     const { mainData } = this.state;
     return (
@@ -75,17 +60,6 @@ class CheckFormContainer extends React.Component {
                   <RadioButton value="all">Show All</RadioButton>
                   <RadioButton value="finish yet">Show Not Finished</RadioButton>
                 </RadioGroup>
-                <Select
-                  showSearch
-                  style={{ width: 200 }}
-                  placeholder="Select a mo_no"
-                  optionFilterProp="children"
-                  onChange={this.handleSearch}
-                >
-                  <Option value="606247806">606247806</Option>
-                  <Option value="606248603">606248603</Option>
-                  <Option value="606248604">606248604</Option>
-                </Select>
               </Col>
               <Col span={8} />
               <Col span={8} />
