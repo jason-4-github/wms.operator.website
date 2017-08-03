@@ -17,8 +17,10 @@ import {
   message,
 } from 'antd';
 
-import { tableFakeDataCol, tableFakeDataVal } from './../constants/tableFakeData';
-
+/* eslint-disable import/extensions */
+import columnJson from './../constants/tableColumnName.json';
+import dataJson from './../constants/tableFakeData.json';
+/* eslint-enable import/extensions */
 const TabPane = Tabs.TabPane;
 const Search = Input.Search;
 const RadioButton = Radio.Button;
@@ -26,15 +28,12 @@ const RadioGroup = Radio.Group;
 const { Header, Content } = Layout;
 const FormItem = Form.Item;
 
-const columns = tableFakeDataCol();
-const data = tableFakeDataVal();
-
 class ReceiveContainer extends React.Component {
-  static showTable(text, fixHeight) {
+  static showTable(text, fixHeight, columnType, dataType) {
     return (
       <Table
-        columns={columns}
-        dataSource={data}
+        columns={columnJson[`${columnType}`]}
+        dataSource={dataJson[`${dataType}`]}
         size="small"
         scroll={{ y: fixHeight }}
         title={() => { return text; }}
@@ -118,10 +117,10 @@ class ReceiveContainer extends React.Component {
               <Card bodyStyle={{ padding: '10px' }}>
                 <Row>
                   <Col span={16} id="detailTable">
-                    { ReceiveContainer.showTable('Receive Detail', 140) }
+                    { ReceiveContainer.showTable('Receive Detail', 140, 'receiveDetail', 'receiveDetail') }
                   </Col>
                   <Col span={8}>
-                    { ReceiveContainer.showTable('Data of This Part NO.', 140) }
+                    { ReceiveContainer.showTable('Data of This Part NO.', 140, 'receiveOfRack') }
                   </Col>
                 </Row>
                 <Row id="hrRow"><hr /></Row>
@@ -148,7 +147,7 @@ class ReceiveContainer extends React.Component {
                     </Card>
                   </Col>
                   <Col span={10} id="bottomMidTable">
-                    { ReceiveContainer.showTable('Data of This Rack', 165) }
+                    { ReceiveContainer.showTable('Data of This Rack', 165, 'receiveOfRack') }
                   </Col>
                   <Col span={8}>
                     <Card title="Scan" bodyStyle={{ padding: '10px' }}>

@@ -12,30 +12,30 @@ import {
   Layout,
 } from 'antd';
 
-import { tableFakeDataCol, tableFakeDataVal } from './../constants/tableFakeData';
+/* eslint-disable import/extensions */
+import columnJson from './../constants/tableColumnName.json';
+import dataJson from './../constants/tableFakeData.json';
+/* eslint-enable import/extensions */
 import { doListIssue } from '../actions';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const { Header, Content } = Layout;
 
-const columns = tableFakeDataCol();
-const data = tableFakeDataVal();
-
 class IssueContainer extends React.Component {
-  static showTable(text, fixHeight) {
+  static showTable(text, fixHeight, columnType, dataType) {
     // control to hide the title row as text = ''
     return (text === ''
       ? <Table
-        columns={columns}
-        dataSource={data}
+        columns={columnJson[`${columnType}`]}
+        dataSource={dataJson[`${dataType}`]}
         size="small"
         scroll={{ y: fixHeight }}
         pagination={false}
       />
       : <Table
-        columns={columns}
-        dataSource={data}
+        columns={columnJson[`${columnType}`]}
+        dataSource={dataJson[`${dataType}`]}
         size="small"
         scroll={{ y: fixHeight }}
         title={() => { return text; }}
@@ -61,14 +61,12 @@ class IssueContainer extends React.Component {
     };
   }
   componentDidMount() {
+    /* eslint-disable no-shadow */
     const { doListIssue } = this.props;
+    /* eslint-enable no-shadow */
     doListIssue();
   }
   render() {
-    const {
-      listIssueData,
-      } = this.props;
-    console.log(listIssueData);
     return (
       <div id="issue-container">
         <Layout className="layout">
@@ -96,13 +94,19 @@ class IssueContainer extends React.Component {
               <Card bodyStyle={{ padding: '10px' }}>
                 <Row>
                   <Col span={24} id="detailTable">
-                    { IssueContainer.showTable('IssueOrder of this Rack', 140) }
+                    { IssueContainer.showTable(
+                      'IssueOrder of this Rack',
+                      140,
+                      'issueOrderOfRack') }
                   </Col>
                 </Row>
                 <Row id="hrRow"><hr /></Row>
                 <Row>
                   <Col span={13} id="bottomMidTable">
-                    { IssueContainer.showTable('Data of This Rack', 165) }
+                    { IssueContainer.showTable(
+                      'Data of This Rack',
+                      165,
+                      'issueDataOfRack') }
                   </Col>
                   <Col span={11}>
                     <Card title="Scan" bodyStyle={{ padding: '10px' }}>
@@ -145,7 +149,6 @@ const mapStateToProps = (state) => {
 };
 IssueContainer.propTypes = {
   doListIssue: PropTypes.func,
-  listIssueData: PropTypes.array,
 };
 export default connect(
   mapStateToProps,

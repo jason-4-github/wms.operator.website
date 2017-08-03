@@ -8,25 +8,25 @@ import {
 } from 'antd';
 import { browserHistory } from 'react-router';
 
-import { tableFakeDataCol, tableFakeDataVal } from './../../constants/tableFakeData';
-
-const columns = tableFakeDataCol();
-const data = tableFakeDataVal();
+/* eslint-disable import/extensions */
+import columnJson from './../../constants/tableColumnName.json';
+import dataJson from './../../constants/tableFakeData.json';
+/* eslint-enable import/extensions */
 
 class IssueReviseFormContainer extends React.Component {
   static showTable(text, fixHeight) {
     // control to hide the title row as text = ''
     return (text === ''
       ? <Table
-        columns={columns}
-        dataSource={data}
+        columns={columnJson.rivise}
+        dataSource={dataJson.riviseData}
         size="small"
         scroll={{ y: fixHeight }}
         pagination={false}
       />
       : <Table
-        columns={columns}
-        dataSource={data}
+        columns={columnJson.rivise}
+        dataSource={dataJson.riviseData}
         size="small"
         scroll={{ y: fixHeight }}
         title={() => { return text; }}

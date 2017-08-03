@@ -1,0 +1,313 @@
+{
+  "receiveDetail":[
+    {
+      "title":"SEQ",
+      "dataIndex":"receiveSequenceNumber",
+      "key":"receiveSequenceNumber"
+    },
+    {
+      "title":"PR_NO",
+      "dataIndex":"purchaseNumber",
+      "key":"purchaseNumber"
+    },
+    {
+      "title":"PARTS_NO",
+      "dataIndex":"partsNumber",
+      "key":"partsNumber"
+    },
+    {
+      "title":"CUST_PARTS_NO",
+      "dataIndex":"customerPartsNumber",
+      "key":"customerPartsNumber"
+    },
+    {
+      "title":"QTY",
+      "dataIndex":"quantity",
+      "key":"quantity"
+    },
+    {
+      "title":"ACCU_QTY",
+      "dataIndex":"accurateQuantity",
+      "key":"accurateQuantity"
+    },
+    {
+      "title":"BAL_QTY",
+      "dataIndex":"balanceQuantity",
+      "key":"balanceQuantity"
+    },
+    {
+      "title":"FINISH_TIME",
+      "dataIndex":"finishTime",
+      "key":"finishTime"
+    }
+  ],
+  "receiveOfRack":[
+    {
+      "title":"Parts_No",
+      "dataIndex":"receiveSequenceNumber",
+      "key":"receiveSequenceNumber"
+    },
+    {
+      "title":"Rack_NO",
+      "dataIndex":"purchaseNumber",
+      "key":"purchaseNumber"
+    },
+    {
+      "title":"ItemCount",
+      "dataIndex":"partsNumber",
+      "key":"partsNumber"
+    },
+    {
+      "title":"InTime",
+      "dataIndex":"customerPartsNumber",
+      "key":"customerPartsNumber"
+    }
+  ],
+  "issueOrderOfRack":[
+    {
+      "title":"Rack_NO",
+      "dataIndex":"rackNumber",
+      "key":"rackNumber"
+    }, {
+      "title":"Parts_No",
+      "dataIndex":"partsNumber",
+      "key":"partsNumber"
+    }, {
+      "title":"Rack_QTY",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"Vender",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"Lot_No",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"Data_Code",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"In_Time",
+      "dataIndex":"",
+      "key":""
+    }
+  ],
+  "issueDataOfRack":[
+    {
+      "title":"MO_NO",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"ISSUE_NO",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"MADE_AREA",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"LINE_NO",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"Seq",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"Rack_NO",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"Parts_NO",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"Cust_NO",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"QTY",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"ISSUE_QTY",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"BAL_QTY",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"Vender",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"Lot_No",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"Date_Code",
+      "dataIndex":"",
+      "key":""
+    }
+  ],
+  "issueCheckMainColumn":[
+    {
+      "title": "MO_NO",
+      "dataIndex": "moNumber",
+      "key": "moNumber",
+      "width": "12%"
+    }, {
+      "title": "ISSUE_NO",
+      "dataIndex": "issueNumber",
+      "key": "issueNumber",
+      "width": "12%"
+    }, {
+      "title": "START_TIME",
+      "dataIndex": "startTime",
+      "key": "startTime",
+      "width": "12%"
+    }, {
+      "title": "WMS_OK_TIME",
+      "dataIndex": "wmsOkTime",
+      "key": "wmsOkTime",
+      "width": "12%"
+    }, {
+      "title": "LINE_NO",
+      "dataIndex": "lineNumber",
+      "key": "lineNumber",
+      "width": "12%"
+    }, {
+      "title": "FINISH_TIME",
+      "dataIndex": "finishTime",
+      "key": "finishTime",
+      "width": "12%"
+    }, {
+      "title": "TR_CD",
+      "dataIndex": "tr_cd",
+      "key": "tr_cd",
+      "width": "12%"
+    }, {
+      "title": "DEPT_CD",
+      "dataIndex": "dept_cd",
+      "key": "dept_cd",
+      "width": "12%"
+    }
+  ],
+  "issueCheckSubject": [
+    {
+      "title": "QTY",
+      "dataIndex": "quanlity",
+      "key": "quanlity"
+    }, {
+      "title": "ISSUE_QTY",
+      "dataIndex": "issueQuanlity",
+      "key": "issueQuanlity"
+    }, {
+      "title": "MO_NO",
+      "dataIndex": "moNumber",
+      "key": "moNumber"
+    }, {
+      "title": "ISSUE_NO",
+      "dataIndex": "issueNumber",
+      "key": "issueNumber"
+    }, {
+      "title": "ISSUE_SEQ_NO",
+      "dataIndex": "issueSequenceNumber",
+      "key": "issueSequenceNumber"
+    }, {
+      "title": "PARTS_NO",
+      "dataIndex": "partsNumber",
+      "key": "partsNumber"
+    }, {
+      "title": "CUST_PARTS_NO",
+      "dataIndex": "customerPartsNumber",
+      "key": "customerPartsNumber"
+    }, {
+      "title": "VENDOR",
+      "dataIndex": "vendor",
+      "key": "vendor"
+    }, {
+      "title": "LOT_NO",
+      "dataIndex": "lotNumber",
+      "key": "lotNumber"
+    }, {
+      "title": "DATE_CODE",
+      "dataIndex": "dateCode",
+      "key": "dateCode"
+    }, {
+      "title": "NOT_VENDOR",
+      "dataIndex": "notVendor",
+      "key": "notVendor"
+    }, {
+      "title": "NOT_LOT_NO",
+      "dataIndex": "notLotNumber",
+      "key": "notLotNumber"
+    }, {
+      "title": "NOT_DATE_CODE",
+      "dataIndex": "notDateCode",
+      "key": "notDateCode"
+    }, {
+      "title": "REMARK",
+      "dataIndex": "remark",
+      "key": "remark"
+    }, {
+      "title": "SHORT_QTY",
+      "dataIndex": "shortQuanlity",
+      "key": "shortQuanlity"
+    }, {
+      "title": "REF_ISSUE_NO",
+      "dataIndex": "referenceIssueNumber",
+      "key": "referenceIssueNumber"
+    }, {
+      "title": "REF_ISSUE_SEQ_NO",
+      "dataIndex": "referenceIssueSequenceNumber",
+      "key": "referenceIssueSequenceNumber"
+    }, {
+      "title": "CAN_DELETE",
+      "dataIndex": "canDelete",
+      "key": "canDelete"
+    }, {
+      "title": "TR_CD",
+      "dataIndex": "TR_CD",
+      "key": "TR_CD"
+    }, {
+      "title": "FINISH_TIME",
+      "dataIndex": "finishTime",
+      "key": "finishTime"
+    }
+  ],
+  "rivise": [
+    {
+      "title":"Rack_NO",
+      "dataIndex":"rackNumber",
+      "key": "rackNumber"
+    }, {
+      "title":"Parts_No",
+      "dataIndex":"partsNumber",
+      "key": "partsNumber"
+    }, {
+      "title":"Cust_No",
+      "dataIndex":"customerNumber",
+      "key": "customerNumber"
+    }, {
+      "title":"Rack_QTY",
+      "dataIndex":"rackQuanlity",
+      "key": "rackQuanlity"
+    }, {
+      "title":"Vender",
+      "dataIndex":"vendor",
+      "key": "vendor"
+    }, {
+      "title":"Lot_No",
+      "dataIndex":"lotNumber",
+      "key": "lotNumber"
+    }, {
+      "title":"Date_Code",
+      "dataIndex":"dateCode",
+      "key": "dateCode"
+    }
+  ]
+}

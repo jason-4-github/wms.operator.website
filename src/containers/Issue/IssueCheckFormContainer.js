@@ -8,30 +8,30 @@ import {
 } from 'antd';
 import { browserHistory } from 'react-router';
 
-import { issueCheckMainTableCol, issueCheckMainTableVal, subTableFakeDataVal } from './../../constants/issueTestData';
+/* eslint-disable import/extensions */
+import columnJson from './../../constants/tableColumnName.json';
+import dataJson from './../../constants/tableFakeData.json';
+/* eslint-enable import/extensions */
 import EditableTable from './../../components/EditableTable';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
-const columns = issueCheckMainTableCol();
-const data = issueCheckMainTableVal();
-const subData = subTableFakeDataVal();
 const fixHeight = window.innerHeight * 0.7;
 
 class CheckFormContainer extends React.Component {
-  static showTable(mainData) {
+  static showTable() {
     const expandedRowRender = () => {
       return (
         <div style={{ background: '#ECECEC', height: fixHeight }}>
-          <EditableTable subData={subData} />
+          <EditableTable subData={dataJson.issueCheckSubTableVal} />
         </div>
       );
     };
     return (
       <Table
-        columns={columns}
-        dataSource={mainData}
+        columns={columnJson.issueCheckMainColumn}
+        dataSource={dataJson.issueCheckMainTableVal}
         size="small"
         scroll={{ y: fixHeight }}
         expandedRowRender={expandedRowRender}
@@ -45,11 +45,9 @@ class CheckFormContainer extends React.Component {
       companyId: null,
       showDataRadio: 'all',
       useOptionRadio: 'use',
-      mainData: data,
     };
   }
   render() {
-    const { mainData } = this.state;
     return (
       <div id="issue-container">
         <Row>
@@ -65,7 +63,7 @@ class CheckFormContainer extends React.Component {
               <Col span={8} />
             </Row>
             <Row>
-              { CheckFormContainer.showTable(mainData) }
+              { CheckFormContainer.showTable() }
             </Row>
             <Row id="finishRow">
               <Button

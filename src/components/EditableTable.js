@@ -9,86 +9,86 @@ class EditableTable extends React.Component {
     super(props);
     this.columns = [{
       title: 'QTY',
-      dataIndex: 'qty',
-      key: '1',
+      dataIndex: 'quanlity',
+      key: 'quanlity',
       render: (text, record, index) => { return (this.renderColumns(this.state.data, index, 'qty', text)); },
     }, {
       title: 'ISSUE_QTY',
-      dataIndex: 'issue_qty',
-      key: '2',
+      dataIndex: 'issueQuanlity',
+      key: 'issueQuanlity',
       render: (text, record, index) => { return (this.renderColumns(this.state.data, index, 'issue_qty', text)); },
     }, {
       title: 'MO_NO',
-      dataIndex: 'mo_no',
-      key: '3',
+      dataIndex: 'moNumber',
+      key: 'moNumber',
     }, {
       title: 'ISSUE_NO',
-      dataIndex: 'issus_no',
-      key: '4',
+      dataIndex: 'issueNumber',
+      key: 'issueNumber',
     }, {
       title: 'ISSUE_SEQ_NO',
-      dataIndex: 'issus_seq_no',
-      key: '5',
+      dataIndex: 'issueSequenceNumber',
+      key: 'issueSequenceNumber',
     }, {
       title: 'PARTS_NO',
-      dataIndex: 'parts_no',
-      key: '6',
+      dataIndex: 'partsNumber',
+      key: 'partsNumber',
     }, {
       title: 'CUST_PARTS_NO',
-      dataIndex: 'cust_parts_no',
-      key: '7',
+      dataIndex: 'customerPartsNumber',
+      key: 'customerPartsNumber',
     }, {
-      title: 'VENDER',
-      dataIndex: 'vender',
-      key: '8',
+      title: 'VENDOR',
+      dataIndex: 'vendor',
+      key: 'vendor',
     }, {
       title: 'LOT_NO',
-      dataIndex: 'lot_no',
-      key: '9',
+      dataIndex: 'lotNumber',
+      key: 'lotNumber',
     }, {
       title: 'DATE_CODE',
-      dataIndex: 'date_code',
-      key: '10',
+      dataIndex: 'dateCode',
+      key: 'dateCode',
     }, {
       title: 'NOT_VENDOR',
-      dataIndex: 'not_vendor',
-      key: '11',
+      dataIndex: 'notVendor',
+      key: 'notVendor',
     }, {
       title: 'NOT_LOT_NO',
-      dataIndex: 'not_lot_no',
-      key: '12',
+      dataIndex: 'notLotNumber',
+      key: 'notLotNumber',
     }, {
       title: 'NOT_DATE_CODE',
-      dataIndex: 'not_date_code',
-      key: '13',
+      dataIndex: 'notDateCode',
+      key: 'notDateCode',
     }, {
       title: 'REMARK',
       dataIndex: 'remark',
-      key: '14',
+      key: 'remark',
     }, {
       title: 'SHORT_QTY',
-      dataIndex: 'shart_qty',
-      key: '15',
+      dataIndex: 'shortQuanlity',
+      key: 'shortQuanlity',
     }, {
       title: 'REF_ISSUE_NO',
-      dataIndex: 'ref_issue_no',
-      key: '16',
+      dataIndex: 'referenceIssueNumber',
+      key: 'referenceIssueNumber',
     }, {
       title: 'REF_ISSUE_SEQ_NO',
-      dataIndex: 'ref_issue_seq_no',
-      key: '17',
+      dataIndex: 'referenceIssueSequenceNumber',
+      key: 'referenceIssueSequenceNumber',
     }, {
       title: 'CAN_DELETE',
-      dataIndex: 'can_delete',
-      key: '18',
+      dataIndex: 'canDelete',
+      key: 'canDelete',
     }, {
       title: 'TR_CD',
       dataIndex: 'tr_cd',
-      key: '19',
+      key: 'tr_cd',
     }, {
       title: 'FINISH_TIME',
-      dataIndex: 'finish_time',
-      key: '20',
+      dataIndex: 'finishTime',
+      key: 'finishTime',
     }];
     this.state = {
       data: this.props.subData,
@@ -103,6 +103,7 @@ class EditableTable extends React.Component {
     });
   }
   handleChange(key, index, value) {
+    console.log(key, index, value);
     const { data } = this.state;
     data[index][key].value = value;
     this.setState({ data });
@@ -164,14 +165,6 @@ class EditableTable extends React.Component {
   }
   render() {
     const { data, delDataKey } = this.state;
-    const dataSource = data.map((item) => {
-      const obj = {};
-      Object.keys(item).forEach((key) => {
-        obj[key] = key === 'key' ? item[key] : item[key].value;
-      });
-      console.log(obj);
-      return obj;
-    });
     const rowSelection = {
       onChange: (selectedRowKeys, selectedRows) => {
         this.setState({
@@ -189,7 +182,7 @@ class EditableTable extends React.Component {
         </Popconfirm>
         <Table
           bordered
-          dataSource={dataSource}
+          dataSource={data}
           columns={columns}
           rowSelection={rowSelection}
           scroll={{ x: '260%' }}
