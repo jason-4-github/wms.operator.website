@@ -475,7 +475,7 @@
       "vendor": "NEPTIDE",
       "lotNumber": "",
       "dateCode": 1382,
-      "quanlity": {"value":6415},
+      "quanlity": 6415,
       "issueQuanlity": 17828,
       "finishTime": "2017-05-21 05:08:03",
       "notVendor": "",
@@ -716,7 +716,33 @@
       "createdAt": ""
     }
   ],
-  "riviseData": [
+  "issueCheckNewData": [
+    {
+      "moNumber": null,
+      "issueNumber": null,
+      "issueSequenceNumber": null,
+      "partsNumber": null,
+      "customerPartsNumber": null,
+      "vendor": null,
+      "lotNumber": null,
+      "dateCode": null,
+      "quanlity": null,
+      "issueQuanlity": null,
+      "finishTime": null,
+      "notVendor": null,
+      "notLotNumber": null,
+      "notDateCode": null,
+      "remark": null,
+      "shortQuanlity": null,
+      "referenceIssueNumber": null,
+      "referenceIssueSequenceNumber": null,
+      "canDelete": null,
+      "tr_cd": null,
+      "isDeleted": null,
+      "createdAt": null
+    }
+  ],
+  "reviseData": [
     {
       "rackNumber":"test",
       "partsNumber":"test",

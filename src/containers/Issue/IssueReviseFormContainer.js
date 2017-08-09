@@ -18,15 +18,15 @@ class IssueReviseFormContainer extends React.Component {
     // control to hide the title row as text = ''
     return (text === ''
       ? <Table
-        columns={columnJson.rivise}
-        dataSource={dataJson.riviseData}
+        columns={columnJson.revise}
+        dataSource={dataJson.reviseData}
         size="small"
         scroll={{ y: fixHeight }}
         pagination={false}
       />
       : <Table
-        columns={columnJson.rivise}
-        dataSource={dataJson.riviseData}
+        columns={columnJson.revise}
+        dataSource={dataJson.reviseData}
         size="small"
         scroll={{ y: fixHeight }}
         title={() => { return text; }}

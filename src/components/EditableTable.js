@@ -3,6 +3,9 @@ import React, { PropTypes } from 'react';
 import { Table, Button, Popconfirm } from 'antd';
 
 import EditableCell from './EditableCell';
+/* eslint-disable import/extensions */
+import dataJson from './../constants/tableFakeData.json';
+/* eslint-enable import/extensions */
 
 class EditableTable extends React.Component {
   constructor(props) {
@@ -103,56 +106,40 @@ class EditableTable extends React.Component {
     });
   }
   handleChange(key, index, value) {
-    console.log(key, index, value);
     const { data } = this.state;
-    data[index][key].value = value;
+    data[index].quanlity = value;
     this.setState({ data });
   }
   handleAdd() {
     const { data } = this.state;
-    const newData = {
-      key: data.length,
-      mo_no: {
-        value: ' ',
-        width: 100,
-      },
-      issus_no: {
-        value: ' ',
-        width: 100,
-      },
-      issus_seq_no: {
-        value: ' ',
-        width: 100,
-      },
-      parts_no: {
-        value: ' ',
-        width: 100,
-      },
-      cust_parts_no: {
-        value: ' ',
-        width: 100,
-      },
-      qty: {
-        value: ' ',
-        width: 100,
-      },
-      issue_qty: {
-        value: ' ',
-        width: 100,
-      },
-      vender: {
-        value: ' ',
-        width: 100,
-      },
-      lot_no: {
-        value: ' ',
-        width: 100,
-      },
-      date_code: {
-        value: ' ',
-        width: 100,
-      },
-    };
+    const newData = [];
+    _.map(dataJson.issueCheckNewData, (i) => {
+      const newObj = {};
+      newObj.key = data.length + 1;
+      newObj.moNumber = i.moNumber;
+      newObj.issueNumber = i.issueNumber;
+      newObj.issueSequenceNumber = i.issueSequenceNumber;
+      newObj.partsNumber = i.partsNumber;
+      newObj.customerPartsNumber = i.customerPartsNumber;
+      newObj.vendor = i.vendor;
+      newObj.lotNumber = i.lotNumber;
+      newObj.dateCode = i.dateCode;
+      newObj.quanlity = i.quanlity;
+      newObj.issueQuanlity = i.issueQuanlity;
+      newObj.finishTime = i.finishTime;
+      newObj.notVendor = i.notVendor;
+      newObj.notLotNumber = i.notLotNumber;
+      newObj.notDateCode = i.notDateCode;
+      newObj.remark = i.remark;
+      newObj.shortQuanlity = i.shortQuanlity;
+      newObj.referenceIssueNumber = i.referenceIssueNumber;
+      newObj.referenceIssueSequenceNumber = i.referenceIssueSequenceNumber;
+      newObj.canDelete = i.canDelete;
+      newObj.tr_cd = i.tr_cd;
+      newObj.isDeleted = i.isDeleted;
+      newObj.createdAt = i.createdAt;
+      newData.push(newObj);
+    });
     this.setState({
       data: [...data, newData],
     });
@@ -165,15 +152,14 @@ class EditableTable extends React.Component {
   }
   render() {
     const { data, delDataKey } = this.state;
+    const columns = this.columns;
     const rowSelection = {
-      onChange: (selectedRowKeys, selectedRows) => {
+      onChange: (selectedRowKeys) => {
         this.setState({
           delDataKey: selectedRowKeys,
         });
-        return (console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows));
       },
     };
-    const columns = this.columns;
     return (
       <div>
         <Button type="primary" onClick={() => { this.handleAdd(); }}>Insert DaiYong</Button>

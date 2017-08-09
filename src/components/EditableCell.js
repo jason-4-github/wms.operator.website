@@ -14,7 +14,6 @@ class EditableCell extends React.Component {
   }
   componentWillReceiveProps() {
     if (this.cacheValue !== this.state.value) {
-      console.log(this.cacheValue);
       this.setState({ modifiedStyle: 'editable-cell-text-modified-wrapper' });
     } else {
       this.setState({ modifiedStyle: 'editable-cell-text-wrapper' });
@@ -69,7 +68,7 @@ class EditableCell extends React.Component {
   }
 }
 EditableCell.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.number,
   onChange: PropTypes.func,
 };
 export default EditableCell;
