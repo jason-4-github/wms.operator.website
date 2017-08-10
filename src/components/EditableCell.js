@@ -55,7 +55,7 @@ class EditableCell extends React.Component {
             </div>
             :
             <div className={modifiedStyle}>
-              {value.toString() || ' '}
+              {value || ' '}
               <Icon
                 type="edit"
                 className="editable-cell-icon"

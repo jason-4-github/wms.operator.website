@@ -129,7 +129,7 @@ export const doListMo = () => {
   return (dispatch) => {
     dispatch({
       type: types.LIST_MO_REQUEST,
-      listIssueDetailData: [],
+      listMoData: [],
     });
     fetch(`${serverConfig.url}moNumberShowNotFinish/q/?showNotFinish=1`)
     .then(checkStatus)
@@ -152,13 +152,13 @@ export const doListMo = () => {
       });
       dispatch({
         type: types.LIST_MO_SUCCESS,
-        listIssueDetailData: newData,
+        listMoData: newData,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_MO_FAILURE,
-        listIssueDetailData: [],
+        listMoData: [],
       });
     });
   };
@@ -168,7 +168,7 @@ export const doListMoDetail = () => {
   return (dispatch) => {
     dispatch({
       type: types.LIST_MO_DETAIL_REQUEST,
-      listIssueDetailData: [],
+      listMoDetailData: [],
     });
     fetch(`${serverConfig.url}moNumber/q/?moNumber=mo003`)
     .then(checkStatus)
@@ -191,13 +191,13 @@ export const doListMoDetail = () => {
       });
       dispatch({
         type: types.LIST_MO_DETAIL_SUCCESS,
-        listIssueDetailData: newData,
+        listMoDetailData: newData,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_MO_DETAIL_FAILURE,
-        listIssueDetailData: [],
+        listMoDetailData: [],
       });
     });
   };
@@ -207,7 +207,7 @@ export const doListRevise = () => {
   return (dispatch) => {
     dispatch({
       type: types.LIST_REVISE_REQUEST,
-      listIssueDetailData: [],
+      listReviseData: [],
     });
     fetch(`${serverConfig.url}reviseBarcode/q/?vendor=v001&partsNumber=partsno004&dateCode=1717`)
     .then(checkStatus)
@@ -228,13 +228,13 @@ export const doListRevise = () => {
       });
       dispatch({
         type: types.LIST_REVISE_SUCCESS,
-        listIssueDetailData: newData,
+        listReviseData: newData,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_REVISE_FAILURE,
-        listIssueDetailData: [],
+        listReviseData: [],
       });
     });
   };
@@ -244,7 +244,7 @@ export const doListDeleteIssueItem = () => {
   return (dispatch) => {
     dispatch({
       type: types.LIST_DELETE_ISSUE_ITEM_REQUEST,
-      listIssueDetailData: [],
+      listDeleteIssueItemData: [],
     });
     fetch(`${serverConfig.url}deleteForm/q/?choice=issueItems`)
     .then(checkStatus)
@@ -276,13 +276,13 @@ export const doListDeleteIssueItem = () => {
       });
       dispatch({
         type: types.LIST_DELETE_ISSUE_ITEM_SUCCESS,
-        listIssueDetailData: newData,
+        listDeleteIssueItemData: newData,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_DELETE_ISSUE_ITEM_FAILURE,
-        listIssueDetailData: [],
+        listDeleteIssueItemData: [],
       });
     });
   };
@@ -292,7 +292,7 @@ export const doListDeleteReceiveItems = () => {
   return (dispatch) => {
     dispatch({
       type: types.LIST_DELETE_RECEIVE_ITEM_REQUEST,
-      listIssueDetailData: [],
+      listDeleteReceiveItemsData: [],
     });
     fetch(`${serverConfig.url}deleteForm/q/?choice=receiveItems`)
     .then(checkStatus)
@@ -319,13 +319,13 @@ export const doListDeleteReceiveItems = () => {
       });
       dispatch({
         type: types.LIST_DELETE_RECEIVE_ITEM_SUCCESS,
-        listIssueDetailData: newData,
+        listDeleteReceiveItemsData: newData,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_DELETE_RECEIVE_ITEM_FAILURE,
-        listIssueDetailData: [],
+        listDeleteReceiveItemsData: [],
       });
     });
   };
@@ -334,7 +334,7 @@ export const doListRackName = () => {
   return (dispatch) => {
     dispatch({
       type: types.LIST_RACKNAME_REQUEST,
-      listIssueDetailData: [],
+      listRackNameData: [],
     });
     fetch(`${serverConfig.url}deleteForm/q/?choice=receiveItems`)
     .then(checkStatus)
@@ -342,13 +342,13 @@ export const doListRackName = () => {
     .then((data) => {
       dispatch({
         type: types.LIST_RACKNAME_SUCCESS,
-        listIssueDetailData: data,
+        listRackNameData: data,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_RACKNAME_FAILURE,
-        listIssueDetailData: [],
+        listRackNameData: [],
       });
     });
   };

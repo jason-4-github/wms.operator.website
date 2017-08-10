@@ -207,8 +207,8 @@
       "key": "issueQuanlity"
     }, {
       "title": "MO_NO",
-      "dataIndex": "moNumber",
-      "key": "moNumber"
+      "dataIndex": "moNumber_id",
+      "key": "moNumber_id"
     }, {
       "title": "ISSUE_NO",
       "dataIndex": "issueNumber",

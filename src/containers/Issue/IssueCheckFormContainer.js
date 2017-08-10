@@ -21,10 +21,10 @@ const fixHeight = window.innerHeight * 0.7;
 
 class CheckFormContainer extends React.Component {
   static showTable() {
-    const expandedRowRender = () => {
+    const expandedRowRender = (record) => {
       return (
         <div style={{ background: '#ECECEC', height: fixHeight }}>
-          <EditableTable subData={dataJson.issueCheckSubTableVal} />
+          <EditableTable subData={record.issueCheckSubTableVal} />
         </div>
       );
     };

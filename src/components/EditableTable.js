@@ -4,95 +4,13 @@ import { Table, Button, Popconfirm } from 'antd';
 
 import EditableCell from './EditableCell';
 /* eslint-disable import/extensions */
+import columnJson from './../constants/tableColumnName.json';
 import dataJson from './../constants/tableFakeData.json';
 /* eslint-enable import/extensions */
 
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
-    this.columns = [{
-      title: 'QTY',
-      dataIndex: 'quanlity',
-      key: 'quanlity',
-      render: (text, record, index) => { return (this.renderColumns(this.state.data, index, 'qty', text)); },
-    }, {
-      title: 'ISSUE_QTY',
-      dataIndex: 'issueQuanlity',
-      key: 'issueQuanlity',
-      render: (text, record, index) => { return (this.renderColumns(this.state.data, index, 'issue_qty', text)); },
-    }, {
-      title: 'MO_NO',
-      dataIndex: 'moNumber',
-      key: 'moNumber',
-    }, {
-      title: 'ISSUE_NO',
-      dataIndex: 'issueNumber',
-      key: 'issueNumber',
-    }, {
-      title: 'ISSUE_SEQ_NO',
-      dataIndex: 'issueSequenceNumber',
-      key: 'issueSequenceNumber',
-    }, {
-      title: 'PARTS_NO',
-      dataIndex: 'partsNumber',
-      key: 'partsNumber',
-    }, {
-      title: 'CUST_PARTS_NO',
-      dataIndex: 'customerPartsNumber',
-      key: 'customerPartsNumber',
-    }, {
-      title: 'VENDOR',
-      dataIndex: 'vendor',
-      key: 'vendor',
-    }, {
-      title: 'LOT_NO',
-      dataIndex: 'lotNumber',
-      key: 'lotNumber',
-    }, {
-      title: 'DATE_CODE',
-      dataIndex: 'dateCode',
-      key: 'dateCode',
-    }, {
-      title: 'NOT_VENDOR',
-      dataIndex: 'notVendor',
-      key: 'notVendor',
-    }, {
-      title: 'NOT_LOT_NO',
-      dataIndex: 'notLotNumber',
-      key: 'notLotNumber',
-    }, {
-      title: 'NOT_DATE_CODE',
-      dataIndex: 'notDateCode',
-      key: 'notDateCode',
-    }, {
-      title: 'REMARK',
-      dataIndex: 'remark',
-      key: 'remark',
-    }, {
-      title: 'SHORT_QTY',
-      dataIndex: 'shortQuanlity',
-      key: 'shortQuanlity',
-    }, {
-      title: 'REF_ISSUE_NO',
-      dataIndex: 'referenceIssueNumber',
-      key: 'referenceIssueNumber',
-    }, {
-      title: 'REF_ISSUE_SEQ_NO',
-      dataIndex: 'referenceIssueSequenceNumber',
-      key: 'referenceIssueSequenceNumber',
-    }, {
-      title: 'CAN_DELETE',
-      dataIndex: 'canDelete',
-      key: 'canDelete',
-    }, {
-      title: 'TR_CD',
-      dataIndex: 'tr_cd',
-      key: 'tr_cd',
-    }, {
-      title: 'FINISH_TIME',
-      dataIndex: 'finishTime',
-      key: 'finishTime',
-    }];
     this.state = {
       data: this.props.subData,
       delDataKey: '',
@@ -104,6 +22,28 @@ class EditableTable extends React.Component {
       data.splice(i, 1);
       this.setState({ data });
     });
+  }
+  getColumns() {
+  // this.deleteItem
+    const newData = [];
+    _.map(columnJson.issueCheckSubject, (i) => {
+      const newObj = {};
+      if (i.dataIndex === 'quanlity'
+      || i.dataIndex === 'issueQuanlity') {
+        newObj.title = i.title;
+        newObj.dataIndex = i.dataIndex;
+        newObj.key = i.key;
+        newObj.render = (text, record, index) => {
+          return (this.renderColumns(index, i.dataIndex, text));
+        };
+      } else {
+        newObj.title = i.title;
+        newObj.dataIndex = i.dataIndex;
+        newObj.key = i.key;
+      }
+      newData.push(newObj);
+    });
+    return newData;
   }
   handleChange(key, index, value) {
     const { data } = this.state;
@@ -144,7 +84,7 @@ class EditableTable extends React.Component {
       data: [...data, newData],
     });
   }
-  renderColumns(data, index, key, text) {
+  renderColumns(index, key, text) {
     return (<EditableCell
       value={text}
       onChange={(value) => { this.handleChange(key, index, value); }}
@@ -152,7 +92,6 @@ class EditableTable extends React.Component {
   }
   render() {
     const { data, delDataKey } = this.state;
-    const columns = this.columns;
     const rowSelection = {
       onChange: (selectedRowKeys) => {
         this.setState({
@@ -169,7 +108,7 @@ class EditableTable extends React.Component {
         <Table
           bordered
           dataSource={data}
-          columns={columns}
+          columns={this.getColumns()}
           rowSelection={rowSelection}
           scroll={{ x: '260%' }}
           pagination={false}
