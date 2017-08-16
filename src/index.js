@@ -9,6 +9,7 @@ import './styles/index.less';
 
 import configureStore from './store/configureStore';
 import ReceiveContainer from './containers/ReceiveContainer';
+import DeleteFormContainer from './containers/DeleteFormContainer';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -17,6 +18,7 @@ const routerSet = () => {
   return (
     <Router history={history}>
       <Route path="/" component={ReceiveContainer} />
+      <Route path="/deleteForm" component={DeleteFormContainer} />
     </Router>
   );
 };

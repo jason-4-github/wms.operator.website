@@ -1,0 +1,17 @@
+{
+  "receiveItemsData": [
+    {
+      "key": 1,
+      "id":"test",
+      "invoiceNumber":"test",
+      "receiveNumber":"test",
+      "receiveSequenceNumber":"test",
+      "purchaseNumber":"test",
+      "partsNumber":"test",
+      "scanQuantity":"test",
+      "barcodeDetail":"test",
+      "finishTime":"test",
+      "vendorDigitLength":"test"
+    }
+  ]
+}
