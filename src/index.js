@@ -9,6 +9,7 @@ import './styles/index.less';
 
 import configureStore from './store/configureStore';
 import ReceiveContainer from './containers/ReceiveContainer';
+import ReturnContainer from './containers/ReturnContainer';
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
@@ -17,6 +18,7 @@ const routerSet = () => {
   return (
     <Router history={history}>
       <Route path="/" component={ReceiveContainer} />
+      <Route path="/return" component={ReturnContainer} />
     </Router>
   );
 };

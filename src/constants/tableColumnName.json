@@ -1,0 +1,82 @@
+{
+  "returnDataOfRack":[
+    {
+      "title":"MO_NO",
+      "dataIndex":"moNumber",
+      "key":"moNumber"
+    }, {
+      "title":"ISSUE_NO",
+      "dataIndex":"issueNumber",
+      "key":"issueNumber"
+    }, {
+      "title":"MADE_AREA",
+      "dataIndex":"madeArea",
+      "key":"madeArea"
+    }, {
+      "title":"LINE_NO",
+      "dataIndex":"lineNumber",
+      "key":"lineNumber"
+    }, {
+      "title":"Seq",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"Rack_NO",
+      "dataIndex":"rackNumber",
+      "key":"rackNumber"
+    }, {
+      "title":"Parts_NO",
+      "dataIndex":"partsNumber",
+      "key":"partsNumber"
+    }, {
+      "title":"Cust_NO",
+      "dataIndex":"",
+      "key":""
+    }, {
+      "title":"QTY",
+      "dataIndex":"quanlity",
+      "key":"quanlity"
+    }, {
+      "title":"ISSUE_QTY",
+      "dataIndex":"issueQuanlity",
+      "key":"issueQuanlity"
+    }, {
+      "title":"BAL_QTY",
+      "dataIndex":"balanceQuantity",
+      "key":"balanceQuantity"
+    }, {
+      "title":"Vender",
+      "dataIndex":"vendor",
+      "key":"vendor"
+    }, {
+      "title":"Lot_No",
+      "dataIndex":"lotNumber",
+      "key":"lotNumber"
+    }, {
+      "title":"Date_Code",
+      "dataIndex":"dateCode",
+      "key":"dateCode"
+    }
+  ], "returnDataOfPartNO":[
+    {
+      "title":"Parts_No",
+      "dataIndex":"partsNumber",
+      "key":"partsNumber"
+    },
+    {
+      "title":"Rack_NO",
+      "dataIndex":"rackNumber",
+      "key":"rackNumber"
+    },
+    {
+      "title":"ItemCount",
+      "dataIndex":"itemCount",
+      "key":"itemCount"
+    },
+    {
+      "title":"InTime",
+      "dataIndex":"inTime",
+      "key":"inTime"
+    }
+  ]
+}

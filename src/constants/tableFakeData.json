@@ -1,0 +1,43 @@
+{
+  "returnDataOfRack":[
+    {
+    "key": 1,
+    "moNumber": 606247806,
+    "issueNumber": "607A1425",
+    "madeArea_id": "L1",
+    "startTime": "20160708162558",
+    "wmsOkTime": "2016-07-08 16:31:45",
+    "lineNumber": "H4",
+    "finishTime": "",
+    "TR_CD": ""
+    }, {
+      "key": 2,
+      "moNumber": 606248603,
+      "issueNumber": "607A0834",
+      "madeArea_id": "L2",
+      "startTime": "20160708162558",
+      "wmsOkTime": "2016-07-08 16:31:45",
+      "lineNumber": "H4",
+      "finishTime": "",
+      "TR_CD": ""
+    }, {
+      "key": 3,
+      "moNumber": 606248604,
+      "issueNumber": "607A0835",
+      "madeArea_id": "L3",
+      "startTime": "20160708162558",
+      "wmsOkTime": "2016-07-08 16:31:45",
+      "lineNumber": "H4",
+      "finishTime": "",
+      "TR_CD": ""
+    }
+  ], "returnDataOfPartNO": [
+    {
+      "key": 1,
+      "partsNumber":"test",
+      "rackNumber":"test",
+      "itemCount":"test",
+      "inTime":"test"
+    }
+  ]
+}
