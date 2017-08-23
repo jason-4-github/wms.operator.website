@@ -13,15 +13,17 @@ class EditableTable extends React.Component {
     super(props);
     this.state = {
       data: this.props.subData,
+      newdata: [],
       delDataKey: '',
     };
   }
   onDelete(index) {
-    const { data } = this.state;
+    const { data, newdata } = this.state;
     _.map(index, (i) => {
-      data.splice(i, 1);
-      this.setState({ data });
+      delete data[i - 1];
+      delete newdata[i - 1];
     });
+    this.setState({ data, newdata });
   }
   getColumns() {
   // this.deleteItem
@@ -47,16 +49,15 @@ class EditableTable extends React.Component {
   }
   handleChange(key, index, value) {
     const { data } = this.state;
-    data[index].quanlity = value;
+    data[index][key] = value;
     this.setState({ data });
   }
   handleAdd() {
-    const { data } = this.state;
-    const newData = [];
+    const { data, newdata } = this.state;
     _.map(dataJson.issueCheckNewData, (i) => {
       const newObj = {};
       newObj.key = data.length + 1;
-      newObj.moNumber = i.moNumber;
+      newObj.moNumber_id = i.moNumber_id;
       newObj.issueNumber = i.issueNumber;
       newObj.issueSequenceNumber = i.issueSequenceNumber;
       newObj.partsNumber = i.partsNumber;
@@ -78,10 +79,12 @@ class EditableTable extends React.Component {
       newObj.tr_cd = i.tr_cd;
       newObj.isDeleted = i.isDeleted;
       newObj.createdAt = i.createdAt;
-      newData.push(newObj);
+      data.push(newObj);
+      newdata.push(newObj);
     });
     this.setState({
-      data: [...data, newData],
+      data,
+      newdata,
     });
   }
   renderColumns(index, key, text) {
