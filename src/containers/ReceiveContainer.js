@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 import {
+  Tag,
   Row,
   Col,
   Card,
@@ -15,8 +17,22 @@ import {
   Form,
   Icon,
   message,
+  AutoComplete,
+  LocaleProvider,
 } from 'antd';
+import enUS from 'antd/lib/locale-provider/en_US';
 
+import {
+  doListReceive,
+  doListScanData,
+  doListRackName,
+  doListRackInfos,
+  doListReceiveDetails,
+} from '../actions';
+/* eslint-disable import/extensions */
+import columnJson from './../constants/tableColumnName.json';
+import radioOptions from './../constants/radioOptions.json';
+/* eslint-enable import/extensions */
 const TabPane = Tabs.TabPane;
 const Search = Input.Search;
 const RadioButton = Radio.Button;
@@ -24,149 +40,35 @@ const RadioGroup = Radio.Group;
 const { Header, Content } = Layout;
 const FormItem = Form.Item;
 
-const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
-  key: 'name',
-}, {
-  title: 'Age',
-  dataIndex: 'age',
-  key: 'age',
-}, {
-  title: 'Address',
-  dataIndex: 'address',
-  key: 'address',
-}];
-
-const data = [{
-  key: '1',
-  name: 'John Brown',
-  age: 32,
-  address: 'New York No. 1 Lake Park',
-}, {
-  key: '2',
-  name: 'Jim Green',
-  age: 42,
-  address: 'London No. 1 Lake Park',
-}, {
-  key: '4',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '5',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '6',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '7',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '8',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '22',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '9',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '10',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '11',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '12',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '13',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '14',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '15',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '16',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '17',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '18',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '19',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '20',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '21',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}];
-
 class ReceiveContainer extends React.Component {
-  static showTable(text, fixHeight) {
+  static showTable(text, fixHeight, columnType, data, rowSelection) {
     return (
       <Table
-        columns={columns}
-        dataSource={data}
+        bordered
         size="small"
-        scroll={{ y: fixHeight }}
-        title={() => { return text; }}
         pagination={false}
+        scroll={{ y: fixHeight }}
+        rowSelection={rowSelection}
+        title={() => { return text; }}
+        columns={columnJson[`${columnType}`]}
+        dataSource={data}
       />
     );
   }
   static showRadioGroup(options) {
     const optionArrs = [];
-    _.map(options, (d) => {
-      optionArrs.push(<RadioButton value={d} key={d}>{d}</RadioButton>);
+    _.map(options, (data, k) => {
+      optionArrs.push(<RadioButton
+        value={data.replace(/[^0-9]/ig, '')}
+        key={k}
+      >
+        {data}
+      </RadioButton>);
     });
     return (
-      <RadioGroup defaultValue={options[0]}>
-        {optionArrs}
-      </RadioGroup>
+      <div>
+        { optionArrs }
+      </div>
     );
   }
   static showModal() {
@@ -197,108 +99,290 @@ class ReceiveContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      scanRack: '',
+      scanItem: '',
+      faceOptions: '',
+      dateCodeOptions: '',
+      qtyOptions: '',
+      scanFaceOptions: '',
+      rackName: '',
+      partsNumber: '',
       companyId: null,
+      invoiveNumber: '',
+      sacnInputStyle: 'generalInput',
     };
+    this.onSelect = this.onSelect.bind(this);
+    this.handleScan = this.handleScan.bind(this);
   }
   componentWillMount() {
     ReceiveContainer.showModal();
   }
+  componentDidMount() {
+    /* eslint-disable no-shadow */
+    const { doListRackName } = this.props;
+    /* eslint-enable no-shadow */
+    doListRackName();
+  }
+  onSelect(value) {
+    this.setState({
+      rackName: value,
+    });
+  }
+  handleScan(e) {
+    const {
+      scanRack,
+      qtyOptions,
+      dateCodeOptions,
+    } = this.state;
+    /* eslint-disable no-shadow */
+    const { doListReceive, doListScanData } = this.props;
+    /* eslint-enable no-shadow */
+    if (e.target.value.match('RACK') !== null ||
+        e.target.value.match('rack') !== null) {
+      this.setState({
+        sacnInputStyle: 'scanInput',
+        scanRack: e.target.value,
+      });
+    } else {
+      doListReceive({
+        invoiceNumber: this.state.invoiveNumber,
+      });
+      doListScanData({
+        rackNumber: scanRack,
+        barCode: e.target.value,
+        qtyDigit: qtyOptions,
+        dateCodeDigit: dateCodeOptions,
+      });
+    }
+  }
   render() {
+    const {
+      listReceiveData,
+      listReceiveDetailsData,
+      listRackNameData,
+      listRackInfos,
+      listScanData,
+      listScanItemName } = this.props;
+      /* eslint-disable no-shadow */
+    const {
+      doListReceiveDetails,
+      doListRackInfos,
+      doListReceive } = this.props;
+      /* eslint-enable no-shadow */
+    const rowSelection = {
+      type: 'radio',
+      onChange: (selectedRowKeys, selectedRows) => {
+        if (selectedRows[0].rackName !== undefined) {
+          this.setState({
+            partsNumber: selectedRows[0].partsNumber,
+            rackName: selectedRows[0].rackName,
+            faceOptions: selectedRows[0].rackSide,
+          });
+        } else {
+          doListReceiveDetails({
+            dataOfPartsNumber: selectedRows[0].partsNumber,
+          });
+        }
+      },
+    };
     return (
       <div id="receive-container">
-        <Layout className="layout">
-          <Header id="header">
-            <div id="headerTitle">Material Receive Station</div>
-          </Header>
-          <Content id="content">
-            <Row style={{ paddingTop: '20px' }}>
-              <Col span={4} />
-              <Col style={{ marginBottom: 16 }} span={16}>
-                <Row>
+        <LocaleProvider locale={enUS}>
+          <Layout className="layout">
+            <Header id="header">
+              <div id="headerTitle">Material Receive Station</div>
+            </Header>
+            <Content id="content">
+              <Row style={{ paddingTop: '20px' }}>
+                <Col span={4} />
+                <Col span={8}>
+                  <Search style={{ width: '80%' }} placeholder="Please Enter The ENV.NO" onChange={(e) => { this.setState({ invoiveNumber: e.target.value }); }} />
+                  <Button
+                    type="primary" onClick={() => {
+                      doListReceive({
+                        invoiceNumber: this.state.invoiveNumber,
+                      });
+                    }}
+                  >
+                    G.INV
+                  </Button>
+                </Col>
+                <Col span={4}>
+                  <Col span={12} className="receiveInfo">Receive No: </Col>
                   <Col span={12}>
-                    <Search placeholder="Please Enter The ENV.NO" />
+                    <Input
+                      value={listReceiveData ? listReceiveData[0].receiveNumber : ''} disabled
+                    />
                   </Col>
-                  <Col span={6}>
-                    <Col span={12} className="receiveInfo">Receive No: </Col>
-                    <Col span={12}><Input defaultValue="0571" disabled /></Col>
+                </Col>
+                <Col span={4}>
+                  <Col span={12} className="receiveInfo">M.A.: </Col>
+                  <Col span={12}>
+                    <Input
+                      value={listReceiveData ? listReceiveData[0].madeArea : ''} disabled
+                    />
                   </Col>
-                  <Col span={6}>
-                    <Col span={12} className="receiveInfo">M.A.: </Col>
-                    <Col span={12}><Input defaultValue="26888888" disabled /></Col>
-                  </Col>
-                </Row>
+                </Col>
+                <Col span={4} />
+              </Row>
+              <Col span={24}>
+                <Card bodyStyle={{ padding: '10px' }}>
+                  <Row>
+                    <Col span={16} id="detailTable">
+                      { ReceiveContainer.showTable('Receive Detail', 140, 'receiveDetail', listReceiveData, rowSelection) }
+                    </Col>
+                    <Col span={8}>
+                      { ReceiveContainer.showTable('Data of This Part NO', 140, 'receiveOfPartNO', listReceiveDetailsData, rowSelection) }
+                    </Col>
+                  </Row>
+                  <Row id="hrRow"><hr /></Row>
+                  <Row>
+                    <Col span={6}>
+                      <Card title="Task Status" bodyStyle={{ padding: '10px', textAlign: 'center' }}>
+                        <Tabs size="small">
+                          <TabPane tab="Part NO." key="1" >
+                            <Input size="large" placeholder="Part NO." value={this.state.partsNumber} />
+                          </TabPane>
+                          <TabPane tab="Rack NO." key="2" >
+                            <AutoComplete
+                              style={{ width: 200 }}
+                              dataSource={listRackNameData || ['rack001', 'rack002', 'rack003', 'rack004', 'rack005']}
+                              placeholder="Rack No"
+                              onSelect={this.onSelect}
+                            />
+                            <div id="faceRadio">
+                              <RadioGroup
+                                onChange={(e) => {
+                                  this.setState({
+                                    faceOptions: (e.target.value - 1),
+                                  });
+                                }}
+                                defaultValue={this.state.face}
+                              >
+                                { ReceiveContainer.showRadioGroup(radioOptions.faceOptions) }
+                              </RadioGroup>
+                            </div>
+                          </TabPane>
+                          <TabPane tab="Empty Block" key="3" >
+                            <InputNumber min={0} max={10} defaultValue={3} />
+                            <div id="faceRadio">
+                              <RadioGroup
+                                onChange={(e) => {
+                                  this.setState({
+                                    faceOptions: (e.target.value - 1),
+                                  });
+                                }}
+                                defaultValue={this.state.face}
+                              >
+                                { ReceiveContainer.showRadioGroup(radioOptions.faceOptions) }
+                              </RadioGroup>
+                            </div>
+                          </TabPane>
+                        </Tabs>
+                        <div id="startButton">
+                          <Button
+                            type="primary"
+                            size="large"
+                            onClick={() => {
+                              doListRackInfos({
+                                rackName: this.state.rackName,
+                                face: this.state.faceOptions,
+                              });
+                            }}
+                          >Start</Button>
+                        </div>
+                      </Card>
+                    </Col>
+                    <Col span={10} id="bottomMidTable">
+                      {listScanData ? ReceiveContainer.showTable('Data of This Rack', 165, 'receiveOfRack', listScanData, null) : ReceiveContainer.showTable('Data of This Rack', 165, 'receiveOfRack', listRackInfos, null)}
+                    </Col>
+                    <Col span={8}>
+                      <Card title="Scan" bodyStyle={{ padding: '10px' }}>
+                        <Col span={6} className="scanRadio">Date Code: </Col>
+                        <Col span={18} className="scanRadio">
+                          <RadioGroup
+                            onChange={(e) => {
+                              this.setState({
+                                dateCodeOptions: e.target.value,
+                              });
+                            }}
+                          >
+                            { ReceiveContainer.showRadioGroup(radioOptions.dateCode) }
+                          </RadioGroup>
+                        </Col>
+                        <Col span={6} className="scanRadio">QTY: </Col>
+                        <Col span={18} className="scanRadio">
+                          <RadioGroup
+                            onChange={(e) => {
+                              this.setState({
+                                qtyOptions: e.target.value,
+                              });
+                            }}
+                          >
+                            { ReceiveContainer.showRadioGroup(radioOptions.qty) }
+                          </RadioGroup>
+                        </Col>
+                        <Col span={6} className="scanRadio">Face: </Col>
+                        <Col span={18} className="scanRadio">
+                          <RadioGroup
+                            onChange={(e) => {
+                              this.setState({
+                                scanFaceOptions: e.target.value,
+                              });
+                            }}
+                          >
+                            { ReceiveContainer.showRadioGroup(radioOptions.faceOptions) }
+                          </RadioGroup>
+                        </Col>
+                        <Col span={6} className="scanRadio">Scan</Col>
+                        <Col span={18}>
+                          <Input id={this.state.sacnInputStyle} onChange={this.handleScan} />
+                        </Col>
+                        <Col span={6} className="scanRadio">Rack:</Col>
+                        <Col span={18} className="scanRadio"><Tag className="scanTag">{this.state.scanRack}</Tag>
+                        </Col>
+                        <Col span={6} className="scanRadio">Item:</Col>
+                        <Col span={18} className="scanRadio"><Tag className="scanTag">{listScanItemName}</Tag></Col>
+                      </Card>
+                    </Col>
+                  </Row>
+                  <Row id="finishRow">
+                    <Button id="finishButton" size="large" type="primary">Finish</Button>
+                  </Row>
+                </Card>
               </Col>
-              <Col span={4} />
-            </Row>
-            <Col span={24}>
-              <Card bodyStyle={{ padding: '10px' }}>
-                <Row>
-                  <Col span={16} id="detailTable">
-                    { ReceiveContainer.showTable('Receive Detail', 140) }
-                  </Col>
-                  <Col span={8}>
-                    { ReceiveContainer.showTable('Data of This Part NO.', 140) }
-                  </Col>
-                </Row>
-                <Row id="hrRow"><hr /></Row>
-                <Row>
-                  <Col span={6}>
-                    <Card title="Task Status" bodyStyle={{ padding: '10px', textAlign: 'center' }}>
-                      <Tabs size="small">
-                        <TabPane tab="Part NO." key="1">
-                          <Input size="large" placeholder="Part NO." />
-                        </TabPane>
-                        <TabPane tab="Rack NO." key="2">
-                          <Input size="large" placeholder="Rack NO." />
-                        </TabPane>
-                        <TabPane tab="Empty Block" key="3">
-                          <InputNumber min={0} max={10} defaultValue={3} />
-                        </TabPane>
-                      </Tabs>
-                      <div id="faceRadio">
-                        { ReceiveContainer.showRadioGroup(['Face1', 'Face2', 'Face3', 'Face4']) }
-                      </div>
-                      <div id="startButton">
-                        <Button type="primary" size="large">Start</Button>
-                      </div>
-                    </Card>
-                  </Col>
-                  <Col span={10} id="bottomMidTable">
-                    { ReceiveContainer.showTable('Data of This Rack', 165) }
-                  </Col>
-                  <Col span={8}>
-                    <Card title="Scan" bodyStyle={{ padding: '10px' }}>
-                      <Col span={6} className="scanRadio">Date Code: </Col>
-                      <Col span={18} className="scanRadio">
-                        { ReceiveContainer.showRadioGroup(['3 digit', '4 digit', '8 digit']) }
-                      </Col>
-                      <Col span={6} className="scanRadio">QTY: </Col>
-                      <Col span={18} className="scanRadio">
-                        { ReceiveContainer.showRadioGroup(['5 digit', '6 digit']) }
-                      </Col>
-                      <Col span={6} className="scanRadio">Face: </Col>
-                      <Col span={18} className="scanRadio">
-                        { ReceiveContainer.showRadioGroup(['Face1', 'Face2', 'Face3', 'Face4']) }
-                      </Col>
-                      <Col span={6} className="scanRadio">Scan</Col>
-                      <Col span={18}>
-                        <Input id="scanInput" />
-                      </Col>
-                      <Col span={24} className="scanRadio">Rack</Col>
-                      <Col span={24} className="scanRadio">Item</Col>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row id="finishRow">
-                  <Button id="finishButton" size="large" type="primary">Finish</Button>
-                </Row>
-              </Card>
-            </Col>
-          </Content>
-        </Layout>
+            </Content>
+          </Layout>
+        </LocaleProvider>
       </div>
     );
   }
 }
-
-export default ReceiveContainer;
+const mapStateToProps = (state) => {
+  return {
+    ...state.admin,
+  };
+};
+ReceiveContainer.propTypes = {
+  doListReceive: PropTypes.func,
+  doListRackName: PropTypes.func,
+  doListScanData: PropTypes.func,
+  doListRackInfos: PropTypes.func,
+  doListReceiveDetails: PropTypes.func,
+  listScanData: PropTypes.array,
+  listScanItemName: PropTypes.string,
+  listRackInfos: PropTypes.array,
+  listRackNameData: PropTypes.array,
+  listReceiveData: PropTypes.array,
+  listReceiveDetailsData: PropTypes.array,
+};
+export default connect(
+  mapStateToProps,
+  {
+    doListReceive,
+    doListRackName,
+    doListScanData,
+    doListRackInfos,
+    doListReceiveDetails,
+  },
+)(ReceiveContainer);
