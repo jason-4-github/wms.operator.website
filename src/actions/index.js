@@ -24,6 +24,7 @@ export const doListReceive = (passProps) => {
   return (dispatch) => {
     dispatch({
       type: types.LIST_RECEIVE_REQUEST,
+      loading: true,
     });
     fetch(`${serverConfig.url}receive/invoiceNumber/q/?invoiceNumber=${passProps.invoiceNumber}`)
     .then(checkStatus)
@@ -48,12 +49,14 @@ export const doListReceive = (passProps) => {
       dispatch({
         type: types.LIST_RECEIVE_SUCCESS,
         listReceiveData: newData,
+        loading: false,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_RECEIVE_FAILURE,
         listReceiveData: [],
+        loading: false,
       });
     });
   };
@@ -64,6 +67,7 @@ export const doListReceiveDetails = (passProps) => {
     dispatch({
       type: types.LIST_RECEIVEDETAILS_REQUEST,
       listReceiveDetailsData: [],
+      loading: true,
     });
     fetch(`${serverConfig.url}utility/dataOfPartsNo/q/?dataOfPartsNumber=${passProps.dataOfPartsNumber}&form=receiveDetails`)
     .then(checkStatus)
@@ -84,12 +88,14 @@ export const doListReceiveDetails = (passProps) => {
       dispatch({
         type: types.LIST_RECEIVEDETAILS_SUCCESS,
         listReceiveDetailsData: newData,
+        loading: false,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_RECEIVEDETAILS_FAILURE,
         listReceiveDetailsData: [],
+        loading: false,
       });
     });
   };
@@ -100,6 +106,7 @@ export const doListRackInfos = (passProps) => {
     dispatch({
       type: types.LIST_RACKINFOS_REQUEST,
       listRackInfos: [],
+      loading: true,
     });
     fetch(`${serverConfig.url}utility/newTask/q/?rackName=${passProps.rackName}&face=${passProps.face}`)
     .then(checkStatus)
@@ -119,12 +126,14 @@ export const doListRackInfos = (passProps) => {
       dispatch({
         type: types.LIST_RACKINFOS_SUCCESS,
         listRackInfos: newData,
+        loading: false,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_RACKINFOS_FAILURE,
         listRackInfos: [],
+        loading: false,
       });
     });
   };
@@ -134,6 +143,7 @@ export const doListDeleteReceiveItems = () => {
     dispatch({
       type: types.LIST_DELETE_RECEIVE_ITEM_REQUEST,
       listDeleteReceiveItemsData: [],
+      loading: true,
     });
     fetch(`${serverConfig.url}deleteForm/q/?choice=receiveItems`)
     .then(checkStatus)
@@ -161,12 +171,14 @@ export const doListDeleteReceiveItems = () => {
       dispatch({
         type: types.LIST_DELETE_RECEIVE_ITEM_SUCCESS,
         listDeleteReceiveItemsData: newData,
+        loading: false,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_DELETE_RECEIVE_ITEM_FAILURE,
         listDeleteReceiveItemsData: [],
+        loading: false,
       });
     });
   };
@@ -204,6 +216,7 @@ export const doListScanData = (passProps) => {
     dispatch({
       type: types.LIST_SCANDATA_REQUEST,
       listScanData: [],
+      loading: false,
     });
     fetch(`${serverConfig.url}receive/scan/q/?rackNumber=${passProps.rackNumber}&barCode=${passProps.barCode}&qtyDigit=${passProps.qtyDigit}&dateCodeDigit=${passProps.dateCodeDigit}`)
     .then(checkStatus)
@@ -224,12 +237,14 @@ export const doListScanData = (passProps) => {
         type: types.LIST_SCANDATA_SUCCESS,
         listScanData: newData,
         listScanItemName: data[data.length - 1].scanItemName,
+        loading: true,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_SCANDATA_FAILURE,
         listScanData: [],
+        loading: false,
       });
     });
   };

@@ -2,21 +2,21 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import {
-  Tag,
-  Row,
   Col,
-  Card,
-  Table,
+  Row,
+  Tag,
   Tabs,
-  InputNumber,
-  Radio,
-  Button,
-  Input,
-  Layout,
-  Modal,
+  Card,
   Form,
   Icon,
+  Modal,
+  Table,
+  Radio,
+  Input,
+  Button,
+  Layout,
   message,
+  InputNumber,
   AutoComplete,
   LocaleProvider,
 } from 'antd';
@@ -41,7 +41,7 @@ const { Header, Content } = Layout;
 const FormItem = Form.Item;
 
 class ReceiveContainer extends React.Component {
-  static showTable(text, fixHeight, columnType, data, rowSelection) {
+  static showTable(text, fixHeight, columnType, data, rowSelection, loading) {
     return (
       <Table
         bordered
@@ -52,6 +52,7 @@ class ReceiveContainer extends React.Component {
         title={() => { return text; }}
         columns={columnJson[`${columnType}`]}
         dataSource={data}
+        loading={loading}
       />
     );
   }
@@ -157,6 +158,7 @@ class ReceiveContainer extends React.Component {
   }
   render() {
     const {
+      loading,
       listReceiveData,
       listReceiveDetailsData,
       listRackNameData,
@@ -229,10 +231,10 @@ class ReceiveContainer extends React.Component {
                 <Card bodyStyle={{ padding: '10px' }}>
                   <Row>
                     <Col span={16} id="detailTable">
-                      { ReceiveContainer.showTable('Receive Detail', 140, 'receiveDetail', listReceiveData, rowSelection) }
+                      { ReceiveContainer.showTable('Receive Detail', 140, 'receiveDetail', listReceiveData, rowSelection, loading) }
                     </Col>
                     <Col span={8}>
-                      { ReceiveContainer.showTable('Data of This Part NO', 140, 'receiveOfPartNO', listReceiveDetailsData, rowSelection) }
+                      { ReceiveContainer.showTable('Data of This Part NO', 140, 'receiveOfPartNO', listReceiveDetailsData, rowSelection, loading) }
                     </Col>
                   </Row>
                   <Row id="hrRow"><hr /></Row>
@@ -294,7 +296,7 @@ class ReceiveContainer extends React.Component {
                       </Card>
                     </Col>
                     <Col span={10} id="bottomMidTable">
-                      {listScanData ? ReceiveContainer.showTable('Data of This Rack', 165, 'receiveOfRack', listScanData, null) : ReceiveContainer.showTable('Data of This Rack', 165, 'receiveOfRack', listRackInfos, null)}
+                      {listScanData ? ReceiveContainer.showTable('Data of This Rack', 165, 'receiveOfRack', listScanData, null, loading) : ReceiveContainer.showTable('Data of This Rack', 165, 'receiveOfRack', listRackInfos, null, loading)}
                     </Col>
                     <Col span={8}>
                       <Card title="Scan" bodyStyle={{ padding: '10px' }}>
@@ -369,6 +371,7 @@ ReceiveContainer.propTypes = {
   doListScanData: PropTypes.func,
   doListRackInfos: PropTypes.func,
   doListReceiveDetails: PropTypes.func,
+  loading: PropTypes.bool,
   listScanData: PropTypes.array,
   listScanItemName: PropTypes.string,
   listRackInfos: PropTypes.array,
