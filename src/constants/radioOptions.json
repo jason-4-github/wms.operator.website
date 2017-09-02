@@ -1,0 +1,5 @@
+{
+  "faceOptions":["Face1", "Face2", "Face3", "Face4"],
+  "dateCode":["3 digit", "4 digit", "8 digit"],
+  "qty":["5 digit", "6 digit"]
+}

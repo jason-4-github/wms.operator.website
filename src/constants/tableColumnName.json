@@ -1,61 +1,65 @@
 {
-  "returnDataOfRack":[
+  "returnDataOfMO":[
     {
       "title":"MO_NO",
       "dataIndex":"moNumber",
-      "key":"moNumber"
+      "key":"moNumber",
+      "width":"8.3%"
     }, {
       "title":"ISSUE_NO",
       "dataIndex":"issueNumber",
-      "key":"issueNumber"
+      "key":"issueNumber",
+      "width":"8.3%"
     }, {
       "title":"MADE_AREA",
       "dataIndex":"madeArea",
-      "key":"madeArea"
-    }, {
-      "title":"LINE_NO",
-      "dataIndex":"lineNumber",
-      "key":"lineNumber"
+      "key":"madeArea",
+      "width":"8.3%"
     }, {
       "title":"Seq",
-      "dataIndex":"",
-      "key":""
-    }, {
-      "title":"Rack_NO",
-      "dataIndex":"rackNumber",
-      "key":"rackNumber"
+      "dataIndex":"issueSequenceNumber",
+      "key":"issueSequenceNumber",
+      "width":"8.3%"
     }, {
       "title":"Parts_NO",
       "dataIndex":"partsNumber",
-      "key":"partsNumber"
+      "key":"partsNumber",
+      "width":"8.3%"
     }, {
       "title":"Cust_NO",
-      "dataIndex":"",
-      "key":""
+      "dataIndex":"customerPartsNumber",
+      "key":"customerPartsNumber",
+      "width":"8.3%"
     }, {
       "title":"QTY",
-      "dataIndex":"quanlity",
-      "key":"quanlity"
+      "dataIndex":"quantity",
+      "key":"quantity",
+      "width":"8.3%"
     }, {
       "title":"ISSUE_QTY",
-      "dataIndex":"issueQuanlity",
-      "key":"issueQuanlity"
-    }, {
-      "title":"BAL_QTY",
-      "dataIndex":"balanceQuantity",
-      "key":"balanceQuantity"
+      "dataIndex":"issueQuantity",
+      "key":"issueQuantity",
+      "width":"8.3%"
     }, {
       "title":"Vender",
       "dataIndex":"vendor",
-      "key":"vendor"
+      "key":"vendor",
+      "width":"8.3%"
     }, {
       "title":"Lot_No",
       "dataIndex":"lotNumber",
-      "key":"lotNumber"
+      "key":"lotNumber",
+      "width":"8.3%"
     }, {
       "title":"Date_Code",
       "dataIndex":"dateCode",
-      "key":"dateCode"
+      "key":"dateCode",
+      "width":"8.3%"
+    }, {
+      "title":"FinishTime",
+      "dataIndex":"finishTime",
+      "key":"finishTime",
+      "width":"8.3%"
     }
   ], "returnDataOfPartNO":[
     {
@@ -77,6 +81,31 @@
       "title":"InTime",
       "dataIndex":"inTime",
       "key":"inTime"
+    }
+  ], "returnDataOfRack":[
+    {
+      "title":"Parts_No",
+      "dataIndex":"itemName",
+      "key":"itemName",
+      "width":"25%"
+    },
+    {
+      "title":"Rack_NO",
+      "dataIndex":"rackNumber",
+      "key":"rackNumber",
+      "width":"25%"
+    },
+    {
+      "title":"ItemCount",
+      "dataIndex":"itemCount",
+      "key":"itemCount",
+      "width":"25%"
+    },
+    {
+      "title":"InTime",
+      "dataIndex":"inTime",
+      "key":"inTime",
+      "width":"25%"
     }
   ]
 }
