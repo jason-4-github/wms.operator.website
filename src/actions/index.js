@@ -24,7 +24,7 @@ export const doListReceive = (passProps) => {
   return (dispatch) => {
     dispatch({
       type: types.LIST_RECEIVE_REQUEST,
-      loading: true,
+      loadingReceive: true,
     });
     fetch(`${serverConfig.url}receive/invoiceNumber/q/?invoiceNumber=${passProps.invoiceNumber}`)
     .then(checkStatus)
@@ -49,27 +49,27 @@ export const doListReceive = (passProps) => {
       dispatch({
         type: types.LIST_RECEIVE_SUCCESS,
         listReceiveData: newData,
-        loading: false,
+        loadingReceive: false,
       });
     })
     .catch(() => {
       dispatch({
         type: types.LIST_RECEIVE_FAILURE,
         listReceiveData: [],
-        loading: false,
+        loadingReceive: false,
       });
     });
   };
 };
 
-export const doListReceiveDetails = (passProps) => {
+export const doListPartsNumber = (passProps) => {
   return (dispatch) => {
     dispatch({
-      type: types.LIST_RECEIVEDETAILS_REQUEST,
-      listReceiveDetailsData: [],
-      loading: true,
+      type: types.LIST_PARTNUMBER_REQUEST,
+      listPartsNumberData: [],
+      loadingPartsNumber: true,
     });
-    fetch(`${serverConfig.url}utility/dataOfPartsNo/q/?dataOfPartsNumber=${passProps.dataOfPartsNumber}&form=receiveDetails`)
+    fetch(`${serverConfig.url}utility/dataOfPartsNo/q/?dataOfPartsNumber=${passProps.dataOfPartsNumber}&form=${passProps.form}`)
     .then(checkStatus)
     .then(parseJSON)
     .then((data) => {
@@ -86,16 +86,16 @@ export const doListReceiveDetails = (passProps) => {
         newData.push(newObj);
       });
       dispatch({
-        type: types.LIST_RECEIVEDETAILS_SUCCESS,
-        listReceiveDetailsData: newData,
-        loading: false,
+        type: types.LIST_PARTNUMBER_SUCCESS,
+        listPartsNumberData: newData,
+        loadingPartsNumber: false,
       });
     })
     .catch(() => {
       dispatch({
-        type: types.LIST_RECEIVEDETAILS_FAILURE,
-        listReceiveDetailsData: [],
-        loading: false,
+        type: types.LIST_PARTNUMBER_FAILURE,
+        listPartsNumberData: [],
+        loadingPartsNumber: false,
       });
     });
   };
