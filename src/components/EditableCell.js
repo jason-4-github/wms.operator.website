@@ -14,7 +14,7 @@ class EditableCell extends React.Component {
   }
   componentWillReceiveProps() {
     if (this.cacheValue !== this.state.value) {
-      this.setState({ modifiedStyle: 'editable-cell-text-modified-wrapper' });
+      this.setState({ modifiedStyle: 'editable-cell-text-wrapper' });
     } else {
       this.setState({ modifiedStyle: 'editable-cell-text-wrapper' });
     }

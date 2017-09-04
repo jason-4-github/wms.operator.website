@@ -1,6 +1,7 @@
 import _ from 'lodash';
+import moment from 'moment';
 import React, { PropTypes } from 'react';
-import { Table, Button, Popconfirm } from 'antd';
+import { Table, Button, Popconfirm, Radio, Input } from 'antd';
 
 import EditableCell from './EditableCell';
 /* eslint-disable import/extensions */
@@ -8,13 +9,15 @@ import columnJson from './../constants/tableColumnName.json';
 import dataJson from './../constants/tableFakeData.json';
 /* eslint-enable import/extensions */
 
+const RadioGroup = Radio.Group;
+
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: this.props.subData,
       newdata: [],
-      delDataKey: '',
+      selectedKey: '',
     };
   }
   onDelete(index) {
@@ -24,6 +27,16 @@ class EditableTable extends React.Component {
       delete newdata[i - 1];
     });
     this.setState({ data, newdata });
+  }
+  onFinishDetail(index) {
+    const { data } = this.state;
+    _.map(index, (i) => {
+      data[i - 1].finishTime = moment().subtract(0, 'days').format('YYYY-MM-DD, hh:mm:ss');
+    });
+    this.setState({ data });
+  }
+  onUseChange(e) {
+    console.log(e.target.value);
   }
   getColumns() {
   // this.deleteItem
@@ -35,6 +48,7 @@ class EditableTable extends React.Component {
         newObj.title = i.title;
         newObj.dataIndex = i.dataIndex;
         newObj.key = i.key;
+        newObj.width = i.width;
         newObj.render = (text, record, index) => {
           return (this.renderColumns(index, i.dataIndex, text));
         };
@@ -42,6 +56,7 @@ class EditableTable extends React.Component {
         newObj.title = i.title;
         newObj.dataIndex = i.dataIndex;
         newObj.key = i.key;
+        newObj.width = i.width;
       }
       newData.push(newObj);
     });
@@ -94,26 +109,41 @@ class EditableTable extends React.Component {
     />);
   }
   render() {
-    const { data, delDataKey } = this.state;
+    const { data, selectedKey } = this.state;
     const rowSelection = {
       onChange: (selectedRowKeys) => {
         this.setState({
-          delDataKey: selectedRowKeys,
+          selectedKey: selectedRowKeys,
         });
       },
     };
     return (
       <div>
         <Button type="primary" onClick={() => { this.handleAdd(); }}>Insert DaiYong</Button>
-        <Popconfirm title="Sure to delete?" onConfirm={() => { this.onDelete(delDataKey); }}>
+        &nbsp;
+        <Popconfirm title="Sure to delete?" onConfirm={() => { this.onDelete(selectedKey); }}>
           <Button type="primary" href="#">Delete DaiYong</Button>
         </Popconfirm>
+        &nbsp;
+        <Button type="primary" onClick={() => { this.onFinishDetail(selectedKey); }}>Finish</Button>
+        &nbsp;
+        <RadioGroup onChange={this.onUseChange}>
+          <Radio value={1}>use</Radio>
+          <Radio value={2}>Not use</Radio>
+        </RadioGroup>
+        &nbsp;
+        <Input addonBefore="Vendor" />
+        &nbsp;
+        <Input addonBefore="Lot N.O." />
+        &nbsp;
+        <Input addonBefore="Date Code" />
+        &nbsp;
         <Table
           bordered
           dataSource={data}
           columns={this.getColumns()}
           rowSelection={rowSelection}
-          scroll={{ x: '260%' }}
+          scroll={{ x: '200%', y: '240' }}
           pagination={false}
         />
       </div>

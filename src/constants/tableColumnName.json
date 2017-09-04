@@ -200,83 +200,103 @@
     {
       "title": "QTY",
       "dataIndex": "quanlity",
-      "key": "quanlity"
+      "key": "quanlity",
+      "width": "100"
     }, {
       "title": "ISSUE_QTY",
       "dataIndex": "issueQuanlity",
-      "key": "issueQuanlity"
+      "key": "issueQuanlity",
+      "width": "100"
     }, {
       "title": "MO_NO",
       "dataIndex": "moNumber_id",
-      "key": "moNumber_id"
+      "key": "moNumber_id",
+      "width": "100"
     }, {
       "title": "ISSUE_NO",
       "dataIndex": "issueNumber",
-      "key": "issueNumber"
+      "key": "issueNumber",
+      "width": "100"
     }, {
       "title": "ISSUE_SEQ_NO",
       "dataIndex": "issueSequenceNumber",
-      "key": "issueSequenceNumber"
+      "key": "issueSequenceNumber",
+      "width": "100"
     }, {
       "title": "PARTS_NO",
       "dataIndex": "partsNumber",
-      "key": "partsNumber"
+      "key": "partsNumber",
+      "width": "100"
     }, {
       "title": "CUST_PARTS_NO",
       "dataIndex": "customerPartsNumber",
-      "key": "customerPartsNumber"
+      "key": "customerPartsNumber",
+      "width": "100"
     }, {
       "title": "VENDOR",
       "dataIndex": "vendor",
-      "key": "vendor"
+      "key": "vendor",
+      "width": "100"
     }, {
       "title": "LOT_NO",
       "dataIndex": "lotNumber",
-      "key": "lotNumber"
+      "key": "lotNumber",
+      "width": "100"
     }, {
       "title": "DATE_CODE",
       "dataIndex": "dateCode",
-      "key": "dateCode"
+      "key": "dateCode",
+      "width": "100"
     }, {
       "title": "NOT_VENDOR",
       "dataIndex": "notVendor",
-      "key": "notVendor"
+      "key": "notVendor",
+      "width": "100"
     }, {
       "title": "NOT_LOT_NO",
       "dataIndex": "notLotNumber",
-      "key": "notLotNumber"
+      "key": "notLotNumber",
+      "width": "100"
     }, {
       "title": "NOT_DATE_CODE",
       "dataIndex": "notDateCode",
-      "key": "notDateCode"
+      "key": "notDateCode",
+      "width": "100"
     }, {
       "title": "REMARK",
       "dataIndex": "remark",
-      "key": "remark"
+      "key": "remark",
+      "width": "100"
     }, {
       "title": "SHORT_QTY",
       "dataIndex": "shortQuanlity",
-      "key": "shortQuanlity"
+      "key": "shortQuanlity",
+      "width": "100"
     }, {
       "title": "REF_ISSUE_NO",
       "dataIndex": "referenceIssueNumber",
-      "key": "referenceIssueNumber"
+      "key": "referenceIssueNumber",
+      "width": "100"
     }, {
       "title": "REF_ISSUE_SEQ_NO",
       "dataIndex": "referenceIssueSequenceNumber",
-      "key": "referenceIssueSequenceNumber"
+      "key": "referenceIssueSequenceNumber",
+      "width": "100"
     }, {
       "title": "CAN_DELETE",
       "dataIndex": "canDelete",
-      "key": "canDelete"
+      "key": "canDelete",
+      "width": "100"
     }, {
       "title": "TR_CD",
       "dataIndex": "TR_CD",
-      "key": "TR_CD"
+      "key": "TR_CD",
+      "width": "100"
     }, {
       "title": "FINISH_TIME",
       "dataIndex": "finishTime",
-      "key": "finishTime"
+      "key": "finishTime",
+      "width": "100"
     }
   ],
   "revise": [
