@@ -34,7 +34,6 @@ import columnJson from './../constants/tableColumnName.json';
 import radioOptions from './../constants/radioOptions.json';
 /* eslint-enable import/extensions */
 const TabPane = Tabs.TabPane;
-const Search = Input.Search;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const { Header, Content } = Layout;
@@ -203,7 +202,7 @@ class ReceiveContainer extends React.Component {
                   <Row style={{ padding: '5px' }}>
                     <Col span={4} />
                     <Col span={8}>
-                      <Search style={{ width: '80%' }} placeholder="Please Enter The ENV.NO" onChange={(e) => { this.setState({ invoiveNumber: e.target.value }); }} />
+                      <Input prefix={<Icon type="search" />} style={{ width: '80%' }} placeholder="Please Enter The ENV.NO" onChange={(e) => { this.setState({ invoiveNumber: e.target.value }); }} />
                       <Button
                         type="primary" onClick={() => {
                           doListReceive({
