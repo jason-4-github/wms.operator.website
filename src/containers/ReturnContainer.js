@@ -195,7 +195,7 @@ class ReturnContainer extends React.Component {
         <LocaleProvider locale={enUS}>
           <Layout className="layout">
             <Header id="header">
-              <div id="headerTitle">Material Receive Station</div>
+              <div id="headerTitle">Material Return Station</div>
             </Header>
             <Content id="content">
               <Row style={{ padding: '5px' }}>
