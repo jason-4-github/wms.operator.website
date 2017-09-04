@@ -145,14 +145,14 @@ class ReceiveContainer extends React.Component {
         scanRack: e.target.value,
       });
     } else {
-      doListReceive({
-        invoiceNumber: this.state.invoiveNumber,
-      });
       doListScanData({
         rackNumber: scanRack,
         barCode: e.target.value,
         qtyDigit: qtyOptions,
         dateCodeDigit: dateCodeOptions,
+      });
+      doListReceive({
+        invoiceNumber: this.state.invoiveNumber,
       });
     }
   }
@@ -162,7 +162,7 @@ class ReceiveContainer extends React.Component {
       loadingReceive,
       loadingPartsNumber,
       listReceiveData,
-      listReceiveDetailsData,
+      listPartsNumberData,
       listRackNameData,
       listRackInfos,
       listScanData,
@@ -239,7 +239,7 @@ class ReceiveContainer extends React.Component {
                           { ReceiveContainer.showTable('Receive Detail', 140, 'receiveDetail', listReceiveData, rowSelection, loadingReceive) }
                         </Col>
                         <Col span={8}>
-                          { ReceiveContainer.showTable('Data of This Part NO', 140, 'receiveOfPartNO', listReceiveDetailsData, rowSelection, loadingPartsNumber) }
+                          { ReceiveContainer.showTable('Data of This Part NO', 140, 'receiveOfPartNO', listPartsNumberData, rowSelection, loadingPartsNumber) }
                         </Col>
                       </Row>
                       <Row>
@@ -386,7 +386,7 @@ ReceiveContainer.propTypes = {
   listRackInfos: PropTypes.array,
   listRackNameData: PropTypes.array,
   listReceiveData: PropTypes.array,
-  listReceiveDetailsData: PropTypes.array,
+  listPartsNumberData: PropTypes.array,
 };
 export default connect(
   mapStateToProps,

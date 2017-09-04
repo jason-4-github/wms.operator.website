@@ -216,7 +216,7 @@ export const doListScanData = (passProps) => {
     dispatch({
       type: types.LIST_SCANDATA_REQUEST,
       listScanData: [],
-      loading: false,
+      loading: true,
     });
     fetch(`${serverConfig.url}receive/scan/q/?rackNumber=${passProps.rackNumber}&barCode=${passProps.barCode}&qtyDigit=${passProps.qtyDigit}&dateCodeDigit=${passProps.dateCodeDigit}`)
     .then(checkStatus)
@@ -237,7 +237,7 @@ export const doListScanData = (passProps) => {
         type: types.LIST_SCANDATA_SUCCESS,
         listScanData: newData,
         listScanItemName: data[data.length - 1].scanItemName,
-        loading: true,
+        loading: false,
       });
     })
     .catch(() => {
