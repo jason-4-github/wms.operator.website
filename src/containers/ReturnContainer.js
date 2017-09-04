@@ -34,7 +34,6 @@ import columnJson from './../constants/tableColumnName.json';
 import radioOptions from './../constants/radioOptions.json';
 /* eslint-enable import/extensions */
 const TabPane = Tabs.TabPane;
-const Search = Input.Search;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const { Header, Content } = Layout;
@@ -204,7 +203,7 @@ class ReturnContainer extends React.Component {
                     MO NO.
                   </Col>
                   <Col span={18}>
-                    <Search style={{ width: '95%' }} placeholder="Please Enter The MO.NO" onChange={(e) => { this.setState({ invoiveNumber: e.target.value }); }} />
+                    <Input prefix={<Icon type="search" />} style={{ width: '95%' }} placeholder="Please Enter The MO.NO" onChange={(e) => { this.setState({ invoiveNumber: e.target.value }); }} />
                   </Col>
                   <Col span={2}>
                     <Button
