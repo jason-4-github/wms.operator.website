@@ -1,54 +1,173 @@
 {
-  "receiveItems":[
-    {
-      "title":"id",
-      "dataIndex":"id",
-      "key":"id"
-    },
+  "delReceiveColumns":[
     {
       "title":"INV_NO",
       "dataIndex":"invoiceNumber",
-      "key":"invoiceNumber"
+      "key":"invoiceNumber",
+      "width":"7.69%"
     },
     {
       "title":"RECV_NO",
       "dataIndex":"receiveNumber",
-      "key":"receiveNumber"
+      "key":"receiveNumber",
+      "width":"7.69%"
     },
     {
       "title":"RECV_SEQ_NO",
       "dataIndex":"receiveSequenceNumber",
-      "key":"receiveSequenceNumber"
+      "key":"receiveSequenceNumber",
+      "width":"7.69%"
     },
     {
       "title":"PR_NO",
       "dataIndex":"purchaseNumber",
-      "key":"purchaseNumber"
+      "key":"purchaseNumber",
+      "width":"7.69%"
     },
     {
       "title":"PARTS_NO",
       "dataIndex":"partsNumber",
-      "key":"partsNumber"
+      "key":"partsNumber",
+      "width":"7.69%"
     },
     {
       "title":"SCAN_QTY",
       "dataIndex":"scanQuantity",
-      "key":"scanQuantity"
+      "key":"scanQuantity",
+      "width":"7.69%"
     },
     {
       "title":"BARCODE_DETIAL",
       "dataIndex":"barcodeDetail",
-      "key":"barcodeDetail"
+      "key":"barcodeDetail",
+      "width":"7.69%"
     },
     {
       "title":"FINISH_TIME",
       "dataIndex":"finishTime",
-      "key":"finishTime"
+      "key":"finishTime",
+      "width":"7.69%"
     },
     {
       "title":"VENDOR_DIGIT",
       "dataIndex":"vendorDigitLength",
-      "key":"vendorDigitLength"
+      "key":"vendorDigitLength",
+      "width":"7.69%"
+    },
+    {
+      "title":"employeeNumber",
+      "dataIndex":"employeeNumber",
+      "key":"employeeNumber",
+      "width":"7.69%"
+    },
+    {
+      "title":"createdAt",
+      "dataIndex":"createdAt",
+      "key":"createdAt",
+      "width":"7.69%"
+    }
+  ], "delIssueColumns":[
+    {
+      "title":"MO_NO",
+      "dataIndex":"moNumber",
+      "key":"moNumber",
+      "width":"5.88%"
+    },
+    {
+      "title":"RECV_NO",
+      "dataIndex":"issueNumber",
+      "key":"issueNumber",
+      "width":"5.88%"
+    },
+    {
+      "title":"RECV_SEQ_NO",
+      "dataIndex":"issueSequenceNumber",
+      "key":"issueSequenceNumber",
+      "width":"5.88%"
+    },
+    {
+      "title":"PR_NO",
+      "dataIndex":"partsNumber",
+      "key":"partsNumber",
+      "width":"5.88%"
+    },
+    {
+      "title":"PARTS_NO",
+      "dataIndex":"scanQuantity",
+      "key":"scanQuantity",
+      "width":"5.88%"
+    },
+    {
+      "title":"SCAN_QTY",
+      "dataIndex":"rackNumber",
+      "key":"rackNumber",
+      "width":"5.88%"
+    },
+    {
+      "title":"BARCODE_DETIAL",
+      "dataIndex":"barcodeDetail",
+      "key":"barcodeDetail",
+      "width":"5.88%"
+    },
+    {
+      "title":"FINISH_TIME",
+      "dataIndex":"finishTime",
+      "key":"finishTime",
+      "width":"5.88%"
+    },
+    {
+      "title":"VENDOR_DIGIT",
+      "dataIndex":"vendorDigitLength",
+      "key":"vendorDigitLength",
+      "width":"5.88%"
+    },
+    {
+      "title":"employeeNumber",
+      "dataIndex":"referenceIssueNumber",
+      "key":"referenceIssueNumber",
+      "width":"5.88%"
+    },
+    {
+      "title":"isDeleted",
+      "dataIndex":"referenceIssueSequenceNumber",
+      "key":"referenceIssueSequenceNumber",
+      "width":"5.88%"
+    },
+    {
+      "title":"TR_CD",
+      "dataIndex":"TR_CD",
+      "key":"TR_CD",
+      "width":"5.88%"
+    },
+    {
+      "title":"TR_CD",
+      "dataIndex":"fromDepartment",
+      "key":"fromDepartment",
+      "width":"5.88%"
+    },
+    {
+      "title":"TR_CD",
+      "dataIndex":"toDepartment",
+      "key":"toDepartment",
+      "width":"5.88%"
+    },
+    {
+      "title":"TR_CD",
+      "dataIndex":"quanlity",
+      "key":"quanlity",
+      "width":"5.88%"
+    },
+    {
+      "title":"TR_CD",
+      "dataIndex":"employeeNumber",
+      "key":"employeeNumber",
+      "width":"5.88%"
+    },
+    {
+      "title":"TR_CD",
+      "dataIndex":"createdAt",
+      "key":"createdAt",
+      "width":"5.88%"
     }
   ]
 }
